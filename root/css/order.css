@@ -1,0 +1,10 @@
+.header_nav li{
+	font-size: 20px;
+	display: inline-block;
+	margin-left: 30px;
+	line-height: 50px;
+}
+.space {
+	display: inline-block;
+	width: 10%;
+}
