@@ -49,23 +49,23 @@ body{
 .shortcut1{
 	display: inline-block;
 	background-color: green;
-	width: 26%;
-	height: 550px;
-	margin-left: 10%;
+	width: 25%;
+	height: 300px;
+	margin-left: 9.2%;
 }
 .shortcut2{
 	display: inline-block;
 	background-color: red;
-	width: 35%;
-	height: 275px;
+	width: 28%;
+	height: 300px;
 	position: absolute;
 	right: 9.5%;
 }
 .shortcut3{
 	display: inline-block;	
 	background-color: black;
-	width: 23%;
-	height: 275px;
+	width: 26%;
+	height: 300px;
 	position: absolute;
 }
 .shortcut img{
@@ -100,7 +100,8 @@ body{
 }
 .tcard{
 	display: inline-block;
-	margin-left: 95px;
+	margin-left: 50px;
+	/*margin-right: 0px;*/
 	padding: 5px 5px;
 	width: 24%;
 	box-shadow: 0 1px 1px grey, 0 0 1px grey, 0 0 1px grey;  
@@ -126,13 +127,14 @@ body{
 .tcard p{
 	font-size: 20px;
 }
+
 .bottom{
 	width: 100%;
 	text-align: center;
 	background-color: #E0E0E0;
 }
 .bottom ul{
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 	display: inline-block;
 	margin-left: 70px;
 }

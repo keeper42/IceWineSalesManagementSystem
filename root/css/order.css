@@ -8,3 +8,8 @@
 	display: inline-block;
 	width: 10%;
 }
+#box{
+	float:left;
+	position:relative;
+	
+}
