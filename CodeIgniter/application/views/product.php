@@ -4,7 +4,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
         <title>商品页面</title>
         <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="/css/product.css">
@@ -27,15 +26,10 @@
 
     <body>
 
-
-        <!--顶部导航条 -->
-
-        <!--悬浮搜索框-->
-
-                <!--分类-->
     <div id="header">
         <div class="header_nav navbar">
             <li>
+            <!-- To determine whether login -->
             <?php if (isset($user)) { ?>
             <img src="<?php echo $user->avatar ?>" class="img-circle" width=32 height=32 alt="avatar">
             <?php echo $user->name ?>
@@ -43,13 +37,12 @@
             <?php } else { ?>
             <a href="/index.php/product/login/<?php echo $product->id ?>" class="login">
             亲，请登录
-            <?php }?>
+            <?php } ?>
             </a></li>
             <div class="space"></div>
             <li><a href="/">商城首页</a></li>
-            <li><i class="fa fa-shopping-cart"></i><a href="/index.php/shopping"> 购物车<sup><span class="badge" style="background-color: #b94a48" id="shopNum"><?php echo isset($shopNum)?$shopNum:'' ?></span></sup></a></li>
-            <li><i class="fa fa-heart"></i><a href="#">  收藏夹</a></li>
-            <li><i class=" fa fa-user"></i><a href="#"> 个人中心</a></li>
+            <li><i class=""></i><a href="/index.php/shopping"> 购物车<sup><span class="badge" style="background-color: #b94a48" id="shopNum"><?php echo isset($shopNum)?$shopNum:'' ?></span></sup></a></li>
+            <li><i class=""></i><a href="/index.php/personal"> 个人中心</a></li>
         </div>
     </div>
                 <script type="text/javascript">
@@ -118,17 +111,13 @@
                                                         <div class="cart-title"><h4 class="text-danger"><strong>口味</strong></h4></div>
                                                         <ul>
                                                             <li class="sku-line selected">原味<i></i></li>
-                                                            <li class="sku-line">奶油<i></i></li>
-                                                            <li class="sku-line">炭烧<i></i></li>
-                                                            <li class="sku-line">咸香<i></i></li>
                                                         </ul>
                                                     </div>
                                                     <div class="theme-options">
                                                         <div class="cart-title"><h4 class="text-danger"><strong>包装</strong></h4></div>
                                                         <ul>
-                                                            <li class="sku-line selected">手袋单人份<i></i></li>
-                                                            <li class="sku-line">礼盒双人份<i></i></li>
-                                                            <li class="sku-line">全家福礼包<i></i></li>
+                                                            <li class="sku-line selected">礼盒装<i></i></li>
+                                                            <li class="sku-line">整箱装<i></i></li>
                                                         </ul>
                                                     </div>
                                                     <div class="theme-options">
@@ -177,7 +166,7 @@
                             </div>
                             <li>
                                 <div class="clearfix tb-btn tb-btn-buy theme-login">
-                                    <a id="LikBuy" title="点此按钮到下一步确认购买信息" href="" data-pid=<?php echo $product->id ?>>立即购买</a>
+                                    <a id="LikBuy" title="点此按钮到下一步确认购买信息" href="/index.php/shopping">立即购买</a>
                                 </div>
                             </li>
                             <li>
@@ -198,48 +187,31 @@
                </div>
               </div>
           </div>
+       <br/>
+       <div class="row">
+          <div class="col-sm-12 col-md-6 col-md-offset-3">
+            <div class="introduceMain">
 
+                    <div class="tabs-bd">
 
-
-
-                    <br/>
-                   <div class="row">
-                  <div class="col-sm-12 col-md-6 col-md-offset-3">
-                    <div class="introduceMain">
-
-                            <div class="tabs-bd">
-
-                                <div class="tab-panel fade in active">
-                                    <div class="J_Brand">
-                                    <div class="attr-list-hd tm-clear">
-                                        <h4>产品参数</h4></div>
-                                    <div class="clear"></div>
-                                    <ul id="J_AttrUL">
-                                        <li title="">产品类型:&nbsp;烘炒类</li>
-                                        <li title="">原料产地:&nbsp;巴基斯坦</li>
-                                        <li title="">产地:&nbsp;湖北省武汉市</li>
-                                        <li title="">配料表:&nbsp;进口松子、食用盐</li>
-                                        <li title="">产品规格:&nbsp;210g</li>
-                                        <li title="">保质期:&nbsp;180天</li>
-                                        <li title="">产品标准号:&nbsp;GB/T 22165</li>
-                                        <li title="">生产许可证编号：&nbsp;QS4201 1801 0226</li>
-                                        <li title="">储存方法：&nbsp;请放置于常温、阴凉、通风、干燥处保存 </li>
-                                        <li title="">食用方法：&nbsp;开袋去壳即食</li>
-                                    </ul>
-                                        <div class="attr-list-hd after-market-hd">
-                                            <h4>产品介绍</h4>
-                                        </div>
-                                           <div class="clear"></div>
-                                            <div>
-                                                <?php echo $product->description ?>
-                                            </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
+                        <div class="tab-panel fade in active">
+                            <div class="J_Brand">
+                            <div class="attr-list-hd tm-clear">
+                                <h4>产品参数</h4>
                             </div>
+                            <div class="clear">
+                                <br/>
+                                <?php echo $product->description ?>
+                            </div>
+                            
+                            <!-- <div class="attr-list-hd after-market-hd"></div> -->
+                                   
+                            </div>
+                            <div class="clear"></div>
                         </div>
+                    </div>
                 </div>
+            </div>
         </div>
     </body>
 

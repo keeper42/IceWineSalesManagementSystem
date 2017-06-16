@@ -1,116 +1,130 @@
-<!doctype html>
-<html class="no-js">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Amaze UI Admin index Examples</title>
-<meta name="description" content="这是一个 index 页面">
-<meta name="keywords" content="index">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="renderer" content="webkit">
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="icon" type="image/png" href="assets/i/favicon.png">
-<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-<meta name="apple-mobile-web-app-title" content="Amaze UI" />
-<link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-<link rel="stylesheet" href="assets/css/admin.css">
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/app.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>后台管理系统</title>
+	<!-- 引入 Bootstrap -->
+	<link href="/css/tether.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+  <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+  <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="/css/admin.css">
+  <link href="/fonts/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 编辑器 -->
+  <link rel="stylesheet" href="/css/wangEditor.min.css">
 </head>
 <body>
-<!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
+	<div id="wrapper">
+		<nav>
+			<ul class="list-group" id="nav-list">
+				<li class="person-info">
+					<a href="#"><img src="<?php echo $user->avatar ?>" alt="" id="avatar" class="img-circle" width="100" height="100"></a>
+					<p class="lead" style="margin-bottom: 0px;"><a href="#"><?php echo $user->name ?></a></p>
+					<a class="btn btn-danger" id="logout" href="/index.php/home/logout">logout</a>
+				</li>
+				<li class="list menu-focus">
+					<a href="/index.php/employee" data-target="products">
+						<i class="fa fa-database" aria-hidden="true"></i>
+						<span style="font-size: 16px">产品管理</span>
+					</a>
+				</li>
+				<li class="list">
+					<a href="/index.php/orderManage" data-target="order">
+						<i class="fa fa-reorder"></i>
+						<span style="font-size: 16px">订单管理</span>
+					</a>
+				</li>
+				<li class="list">
+					<a href="/index.php/employeePersonal" data-target="personal">
+						<i class="fa fa-user"></i>
+						<span style="font-size: 16px">个人中心</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
 
-</head>
+		<!-- container -->
+		<div class="container">
+			<div id="hints"></div>
+			<div id="products" class="" style="margin-top: 20px;" >
+			<h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">产品管理</h3>
+				<br/>
+				<div>
+					<table class="table table-striped table-hover" id="product-list">
+						<thead>
+							<tr>
+								<th>产品</th>
+								<th width="100">库存</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+				<div style="float: right">
+					<button type="button" onclick="publishProduct()" class="btn btn-primary"><i class="fa fa-plus" ></i> 添加产品</button>
+				</div>
+				<br/>
+			    <!-- Load the contents of the tbody -->
+				<div class="pagination-wrapper">
+					<ul class="pagination" id="products-pagination" data-list-url="/index.php/product/getProduct" data-table="#product-list" data-pages=0 data-num-url="/index.php/product/productNum" data-current-page=0 data-single-num=10 data-render="renderProduct(data[i])">
+					</ul>
+				</div>
+			</div>
 
-<body>
-<header class="am-topbar admin-header">
-  <div class="am-topbar-brand"><h2>后台管理系统</h2></div>
-</header>
-
-<div class="am-cf admin-main"> 
-
-<div class="nav-navicon admin-main admin-sidebar">
-    
-    
-    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：employee</div>
-    <div class="sideMenu">
-      <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
-      <ul>
-        <li><a href="">商品列表</a></li>
-        <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'>添加新商品</li>
-        <li>商品分类</li>
-        <li>用户评论</li>
-        <li>商品回收站</li>
-        <li>库存管理 </li>
-      </ul>
-      <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
-      <ul>
-        <li>订单列表</li>
-        <li>合并订单</li>
-        <li>订单打印</li>
-        <li>添加订单</li>
-        <li>发货单列表</li>
-        <li>换货单列表</li>
-      </ul>
-      
-      <h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
-      <ul>
-        <li>站内消息 /留言 </li>
-        <li>短信</li>
-        <li>邮件</li>
-        <li>微信</li>
-        <li>客服</li>
-      </ul>
-
-       <h3 class="am-icon-gears"><em></em> <a href="#">个人中心</a></h3>
-       <ul>
-         <li>数据备份</li>
-         <li>邮件/短信管理</li>
-         <li>上传/下载</li>
-         <li>权限</li>
-         <li>网站设置</li>
-         <li>第三方支付</li>
-         <li>提现 /转账 出入账汇率</li>
-         <li>平台设置</li>
-         <li>声音文件</li>
-       </ul>
-    </div>
-    <!-- sideMenu End --> 
-    
-    <script type="text/javascript">
-			jQuery(".sideMenu").slide({
-				titCell:"h3", //鼠标触发对象
-				targetCell:"ul", //与titCell一一对应，第n个titCell控制第n个targetCell的显示隐藏
-				effect:"slideDown", //targetCell下拉效果
-				delayTime:300 , //效果时间
-				triggerTime:150, //鼠标延迟触发时间（默认150）
-				defaultPlay:true,//默认是否执行效果（默认true）
-				returnDefault:true //鼠标从.sideMen移走后返回默认状态（默认false）
-				});
-		</script>
-    
-</div>
-
-
-
-</div>
-
-
-
-
-<!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/polyfill/rem.min.js"></script>
-<script src="assets/js/polyfill/respond.min.js"></script>
-<script src="assets/js/amazeui.legacy.js"></script>
-<![endif]--> 
-
-<!--[if (gte IE 9)|!(IE)]><!--> 
-<script src="assets/js/amazeui.min.js"></script>
-<!--<![endif]-->
-
-
-
+			<!-- wangEditor -->
+			<div id="product" class="clearfix hidden">
+				<h3 id="func-name">Publish product</h3>
+				<form action="/index.php/product/addProduct" method="post" role="form" class="form-horizontal" id="product-data">
+					<input type="number" name="pid" id="pid" value="" class="hidden">
+					<div class="form-group">
+						<label for="name" class="col-sm-1 control-label">Name:</label>
+						<div class="col-sm-11">
+							<input type="text" name="name" id="name" class="form-control" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="img" class="col-sm-1 control-label">Img:</label>
+						<div class="col-sm-11">
+							<input type="text" name="img" id="img" class="form-control" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="price" class="col-sm-1 control-label">Price:</label>
+						<div class="col-sm-11">
+							<input type="number" name="price" id="price" class="form-control" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="stock" class="col-sm-1 control-label">Stock:</label>
+						<div class="col-sm-11">
+							<input type="number" name="stock" id="stock" class="form-control" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="content" class="col-sm-1 control-label">Description:</label>
+						<div class="col-sm-11 pull-right">
+							<textarea name="content" id="content" class="form-control" cols="30" rows="10" required="required"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script src="/js/jquery.min.js"></script>
+<!-- 包括所有已编译的插件 -->
+<script src="/js/bootstrap.min.js"></script>
+<!-- 编辑器 -->
+<script src="/js/wangEditor.min.js"></script>
+
+<script src="/js/admin.js"></script>
 </html>

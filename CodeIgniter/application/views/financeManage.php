@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/css/wangEditor.min.css">
 </head>
 <body>
+  <!-- Status bar -->
   <div id="wrapper">
     <nav>
       <ul class="list-group" id="nav-list">
@@ -27,15 +28,15 @@
           <p class="lead" style="margin-bottom: 0px;"><a href="#"><?php echo $user->name ?></a></p>
           <a class="btn btn-danger" id="logout" href="/index.php/home/logout">logout</a>
         </li>
-        <li class="list menu-focus">
+        <li class="list">
           <a href="/index.php/manager" data-target="products">
-            <i class="fa fa-group" aria-hidden="true"></i>
+            <i class="fa fa-group"></i>
             <span style="font-size: 16px">员工管理</span>
           </a>
         </li>
-        <li class="list">
+        <li class="list menu-focus">
           <a href="/index.php/financeManage" data-target="finance">
-            <i class="fa fa-money"></i>
+            <i class="fa fa-money" aria-hidden="true"></i>
             <span style="font-size: 16px">财务管理</span>
           </a>
         </li>
@@ -52,49 +53,45 @@
     <div class="container">
       <div id="hints"></div>
       <div id="home" class="hidden"></div>
-      <div id="employee" class="" style="margin-top: 20px;" >
-      <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工管理</h3>
+
+      <div id="employee" class="" style="margin-top: 20px">
+        <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">财务管理</h3>
         <div>
           <table class="table table-striped table-hover" id="product-list">
             <thead>
               <tr>
-                <th>员工编号</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>职位 </th>
-                <th>工资</th>
-                <th>入职时间</th>
-                <th>合同时间</th>
+                <th width="200" >订单编号</th>
+                <th>经手人</th>
+                <th>处理时间</th>
+                <th width="200" > 金额 </th>
+                <th >收入/支出</th>
+                <th>备注</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody ><!-- tbody 内的仅仅是样例，现在是硬编码的，后面就是后台的事情了吧？ -->
             <tr>
+              <td width="200" ><span>20170010616</span></td>
               <td>
-                <a href="#" data-pid="1" onclick="javascript:void(0)">2017001</a>
+                <a href="/index.php/#" data-pid="1" onclick="javascript:void(0)">Tommy</a>
               </td>
-              <td><span>customer</span></td>
-              <td><span>男</span></td>
-              <td><span>普通员工</span></td>
-              <td><span>10000/月</span></td>
-              <td><span>2017-06/16</span></td>
-              <td><span>2年</span></td>
+              <td><span>2017/06/16</span></td>
+              <td><span>270</span></td>
+              <td><span>支出</span></td>
+              <td><span>没有备注</span></td>
             </tr>
             <tr>
-              <td>
-                <a href="#" data-pid="1" onclick="javascript:void(0)">2017002</a>
-              </td>
-              <td><span>custome2</span></td>
-              <td><span>女</span></td>
-              <td><span>普通员工</span></td>
-              <td><span>10000/月</span></td>
-              <td><span>2017-06/16</span></td>
-              <td><span>2年</span></td>
+              <td width="200" ><span>20170010616</span></td>
+              <td> <a href="/index.php/#" data-pid="1" onclick="javascript:void(0)">Tommy</a></td>
+              <td><span>2017/06/16</span></td>
+              <td><span>270</span></td>
+              <td><span>支出</span></td>
+              <td><span>没有备注</span></td>
             </tr>
             </tbody>
           </table>
         </div>
         <div style="float: right">
-          <button type="button" onclick="publishProduct()" class="btn btn-primary" style="margin-right: 60px">+&nbsp;&nbsp;添加员工</button>
+          <button type="button" onclick="publishProduct()" class="btn btn-primary" style="margin-right: 60px">+&nbsp;&nbsp;添加订单</button>
         </div>
         <br>
         <div class="pagination-wrapper">
@@ -105,47 +102,41 @@
 
       <!-- wangEditor -->
       <div id="product" class="clearfix hidden">
-      <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工信息</h3>
+      <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">订单信息</h3>
         <form action="/index.php/product/addProduct" method="post" role="form" class="form-horizontal" id="product-data">
           <input type="number" name="pid" id="pid" value="" class="hidden">
           <div class="form-group">
-            <label for="name" class="col-sm-1 control-label">员工编号:</label>
+            <label for="name" class="col-sm-1 control-label">订单编号:</label>
             <div class="col-sm-11">
               <input type="text" name="name" id="name" class="form-control" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label for="name" class="col-sm-1 control-label">姓名:</label>
-            <div class="col-sm-11">
-              <input type="text" name="name" id="name" class="form-control" required="required">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="img" class="col-sm-1 control-label">性别:</label>
+            <label for="img" class="col-sm-1 control-label">经手人:</label>
             <div class="col-sm-11">
               <input type="text" name="img" id="img" class="form-control" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label for="price" class="col-sm-1 control-label">职位:</label>
+            <label for="price" class="col-sm-1 control-label">处理时间:</label>
             <div class="col-sm-11">
               <input type="number" name="price" id="price" class="form-control" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label for="stock" class="col-sm-1 control-label">薪水:</label>
+            <label for="stock" class="col-sm-1 control-label">金额:</label>
             <div class="col-sm-11">
               <input type="number" name="stock" id="stock" class="form-control" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label for="stock" class="col-sm-1 control-label">入职时间:</label>
+            <label for="stock" class="col-sm-1 control-label">收入/支出:</label>
             <div class="col-sm-11">
               <input type="number" name="stock" id="stock" class="form-control" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label for="stock" class="col-sm-1 control-label">合同时间:</label>
+            <label for="stock" class="col-sm-1 control-label">备注:</label>
             <div class="col-sm-11">
               <input type="number" name="stock" id="stock" class="form-control" required="required">
             </div>

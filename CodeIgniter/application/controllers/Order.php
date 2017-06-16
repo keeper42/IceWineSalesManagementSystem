@@ -40,7 +40,6 @@ class Order extends CI_Controller {
 
 	public function createOrder() {
 		$orderId = $this->order->createOrder();
-
 		header("Location:/index.php/order");
 	}
 

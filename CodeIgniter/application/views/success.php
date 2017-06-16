@@ -30,35 +30,38 @@
                 <?php echo $user->name ?>
                 <a href="/index.php/home/logout">[退出]</a>
             <?php } else { ?>
-                <a href="/index.php/home/login" class="login">亲，请登录，免费注册 </a>
+                <a href="/index.php/home/login" class="login">亲，请登录</a>
             <?php } ?></li>
             <div class="space"></div>
             <li><a href="/">商城首页</a></li>
             <li><i class="fa fa-shopping-cart"></i><a href="/index.php/shopping"> 购物车</a></li>
-            <li><i class="fa fa-heart"></i><a href="#">  收藏夹</a></li>
-            <li><i class=" fa fa-user"></i><a href="#"> 个人中心</a></li>
+            <li><i class=" fa fa-user"></i><a href="/index.php/personal"> 个人中心</a></li>
         </div>
     </div>
 </div>
-<div class="take-delivery">
- <div class="status">
-   <h2>您已成功付款</h2>
-   <div class="successInfo">
-     <ul>
-       <li>付款金额<em >¥268.00</em></li>
-       <div class="user-info">
-         <p>收货人：欧拉</p>
-         <p>联系电话：12345678910</p>
-         <p>收货地址：广东省 深圳市 南山区 深圳大学</p>
+
+<!-- 付款成功 -->
+<div align="center">
+  <div class="take-delivery">
+   <div class="status">
+     <div class="successInfo">
+       <ul>
+         <br/>
+         <li font-size="14px">您已成功付款~</li>
+         <!-- <li>付款金额<em>¥2680.00</em></li> -->
+         <div class="user-info">
+           <p>收货人：customer</p>
+           <p>联系电话：13745678910</p>
+           <p>收货地址：广东省 深圳市 南山区 深圳大学</p>
+         </div>
+               请认真核对您的收货信息，如有错误请联系客服           
+       </ul>
+       <div class="option">
+         <span class="info">您可以</span>
+          <a href="/person/order.html" class="J_MakePoint">查看<span>已买到的宝贝</span></a>
+          <a href="/person/orderinfo.html" class="J_MakePoint"><span>交易详情</span></a>
        </div>
-             请认真核对您的收货信息，如有错误请联系客服
-                               
-     </ul>
-     <div class="option">
-       <span class="info">您可以</span>
-        <a href="/person/order.html" class="J_MakePoint">查看<span>已买到的宝贝</span></a>
-        <a href="/person/orderinfo.html" class="J_MakePoint"><span>交易详情</span></a>
-     </div>
+      </div>
     </div>
   </div>
 </div>

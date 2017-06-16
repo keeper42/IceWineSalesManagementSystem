@@ -1,32 +1,31 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Account extends CI_Controller {
+class FinanceManage extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-
+		
 		$this->load->model('account_model', 'account');
-		$this->load->library('session');
 		$this->load->helper('url');
 	}
 
 	public function index() {
-		if (isset($_SESSION['user'])) {
-			unset($_SESSION['user']);
+		$this->account->login();
+
+		if ($_SESSION['user']->authority < 777) {
+			echo "Permission denied";
+			exit();
 		}
-		$this->load->view('account');
+		$data['user'] = $_SESSION['user'];
+		$this->load->view('financeManage', $data);
 	}
 
 	public function check() {
 		$this->account->check();
 	}
 
-	public function login() {
-		$this->account->login('/');
-	}
-
 	public function logout() {
-		$this->account->logout('/');
+		$this->account->logout(site_url('financeManage'));
 	}
 }

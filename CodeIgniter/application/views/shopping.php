@@ -3,15 +3,15 @@
 <HEADER>
 	<title>Shopping Cart</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    	<!-- 引入 Bootstrap -->
+	<!-- 引入 Bootstrap -->
 	<link href="/css/tether.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
-  <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
-  <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
-  <!--[if lt IE 9]>
-     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-  <![endif]-->
+	  <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+	  <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+	  <!--[if lt IE 9]>
+	     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	  <![endif]-->
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/etao.js"></script>
 	<script type="text/javascript" src="/js/cart.js"></script>
@@ -77,9 +77,9 @@
         	</li>
         	<div class="space"></div>
         	<li><a href="/">商城首页</a></li>
-        	<li><i class="fa fa-shopping-cart"></i><a href="/index.php/shopping"> 购物车<sup><span class="badge" style="background-color: #b94a48" id="shopNum"><?php echo isset($shopNum)?$shopNum:'' ?></span></sup></a></li>
-        	<li><i class="fa fa-heart"></i><a href="#">  收藏夹</a></li>
-        	<li><i class=" fa fa-user"></i><a href="#"> 个人中心</a></li>
+<!--          	<li><i class="fa fa-shopping-cart"></i><a href="/index.php/shopping"> -->
+        	<li><i class=""></i><a href="/index.php/shopping"> 购物车<sup><span class="badge" style="background-color: #b94a48" id="shopNum"><?php echo isset($shopNum)?$shopNum:'' ?></span></sup></a></li>
+        	<li><i class=""></i><a href="/index.php/personal">个人中心</a></li>
       	</div>
   		</div>
   	</div>
@@ -101,7 +101,7 @@
 				<tr>
 					<td><input type="checkbox" data-sid=<?php echo $shopping['shopping']->id ?> class="check-one check"/></td>
 					<td class="goods text-center"><label> <?php echo $shopping['product']->name ?></label></td>
-					<td class="text-center">产品备注产品备注产品备注产品备注产品备注产品备注产品备注</td>
+					<td class="text-center">618活动整箱特惠</td>
 					<td class="selling-price number small-bold-red text-right"
 								style="padding-top: 1.1rem;" data-bind="<?php echo $shopping['product']->price ?>"><?php echo $shopping['product']->price ?>
 					</td>
