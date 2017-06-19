@@ -65,7 +65,7 @@
 						<tbody></tbody>
 					</table>
 				</div>
-				<div style="float: right">
+				<div style="float: right; margin-right: 30px">
 					<button type="button" onclick="publishProduct()" class="btn btn-primary"><i class="fa fa-plus" ></i> 添加产品</button>
 				</div>
 				<br/>
@@ -78,44 +78,46 @@
 
 			<!-- wangEditor -->
 			<div id="product" class="clearfix hidden">
-				<h3 id="func-name">Publish product</h3>
+				<!-- <h3 id="func-name"></h3> -->
+				<h3 style="font-weight: bold; margin-left: 5px; margin-bottom: 20px;">添加产品</h3><br/>
 				<form action="/index.php/product/addProduct" method="post" role="form" class="form-horizontal" id="product-data">
 					<input type="number" name="pid" id="pid" value="" class="hidden">
 					<div class="form-group">
-						<label for="name" class="col-sm-1 control-label">Name:</label>
+						<label for="name" class="col-sm-1 control-label">产品名称: </label>
 						<div class="col-sm-11">
 							<input type="text" name="name" id="name" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="img" class="col-sm-1 control-label">Img:</label>
+						<label for="img" class="col-sm-1 control-label">产品图样: </label>
 						<div class="col-sm-11">
 							<input type="text" name="img" id="img" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="price" class="col-sm-1 control-label">Price:</label>
+						<label for="price" class="col-sm-1 control-label">产品售价: </label>
 						<div class="col-sm-11">
 							<input type="number" name="price" id="price" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="stock" class="col-sm-1 control-label">Stock:</label>
+						<label for="stock" class="col-sm-1 control-label">产品库存: </label>
 						<div class="col-sm-11">
 							<input type="number" name="stock" id="stock" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="content" class="col-sm-1 control-label">Description:</label>
+						<label for="content" class="col-sm-1 control-label">产品详情: </label>
 						<div class="col-sm-11 pull-right">
 							<textarea name="content" id="content" class="form-control" cols="30" rows="10" required="required"></textarea>
 						</div>
 					</div>
-					<div class="form-group">
-						<button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">Save</button>
+					<div class="form-group" style="margin-right: 10px">
+						<button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">&nbsp;保存&nbsp;</button>
 					</div>
 				</form>
 			</div>
+			
 		</div>
 	</div>
 </body>

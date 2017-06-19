@@ -28,8 +28,7 @@ class Product_model extends CI_Model {
 		if (empty($id) && $id != 0) {
 			return -1;
 		}
-		$query = $this->db->where('id', $id)
-									->get('product');
+		$query = $this->db->where('id', $id)->get('product');
 		return $query->row();
 	}
 

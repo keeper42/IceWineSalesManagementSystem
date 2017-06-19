@@ -7,6 +7,7 @@ class Employee extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model('account_model', 'account');
+		$this->load->model('employee_model', 'employee');
 		$this->load->helper('url');
 	}
 
@@ -28,4 +29,17 @@ class Employee extends CI_Controller {
 	public function logout() {
 		$this->account->logout(site_url('employee'));
 	}
+
+	public function getEmployee() {
+		echo json_encode($this->employee->getEmployee(), JSON_UNESCAPED_UNICODE);
+	}
+
+	public function getEmployeeNum() {
+		echo $this->employee->getEmployeeNum();
+	}
+
+	public function getEmployeeById() {
+		echo json_encode($this->employee->getEmployeeById($this->input->get('eid')), JSON_UNESCAPED_UNICODE);
+	}
+
 }

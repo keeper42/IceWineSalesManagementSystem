@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>冰酒销售管理系统</title>
 	<!-- 引入 Bootstrap -->
-	<link href="/css/tether.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
     <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
     <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
@@ -12,9 +11,9 @@
      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <link href="/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="/css/home.css">
 </head>
+
 <body>
 	<!-- 顶部导航栏 -->
 	<div class="header">
@@ -36,33 +35,32 @@
 			<li><a href="/index.php/personal">个人中心</a></li>
 		</div>
 	</div>
-		<div class="mainproduct">
+	<div class="mainproduct">
 		<div id="myCarousel" class="carousel slide">
-    <!-- 轮播（Carousel）指标 -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>   
-    <!-- 轮播（Carousel）项目 -->
-    <div class="carousel-inner">
-        <div class="item active">
-           <a href="#"><img src="/images/wine1.jpg" alt="First slide"></a>
-        </div>
-        <div class="item">
-        <a href="#"> <img src="/images/wine2.jpg" alt="Second slide"></a>
-        </div>
-        <div class="item">
-        <a href="#"> <img src="/images/wine3.jpg" alt="Third slide"></a>
-        </div>
-    </div>
-    <!-- 轮播（Carousel）导航 -->
-    <a class="carousel-control left" href="#myCarousel" 
-       data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#myCarousel" 
-       data-slide="next">&rsaquo;</a>
-</div> 
-		</div>
+		    <!-- 轮播（Carousel）指标 -->
+		    <ol class="carousel-indicators">
+		        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		        <li data-target="#myCarousel" data-slide-to="1"></li>
+		        <li data-target="#myCarousel" data-slide-to="2"></li>
+		    </ol>   
+		    <!-- 轮播（Carousel）项目 -->
+		    <div class="carousel-inner">
+		        <div class="item active">
+		           <a href="#"><img src="/images/wine1.jpg" alt="First slide"></a>
+		        </div>
+		        <div class="item">
+		        	<a href="#"> <img src="/images/wine2.jpg" alt="Second slide"></a>
+		        </div>
+		        <div class="item">
+		        	<a href="#"> <img src="/images/wine3.jpg" alt="Third slide"></a>
+		        </div>
+		    </div>
+		    <!-- 轮播（Carousel）导航 -->
+		    <a class="carousel-control left" href="#myCarousel" 
+		       data-slide="prev">&lsaquo;</a>
+		    <a class="carousel-control right" href="#myCarousel" 
+		       data-slide="next">&rsaquo;</a>
+		</div> 
 	</div>
 	<div class="shortcut">
 		<div class="shortcut1">
@@ -74,7 +72,6 @@
 		<div class="shortcut3">
 				<a href="/index.php/product/index/9"><img src="/images/shortcut3.jpg" alt=""></a>
 		</div>
-
 	</div>
 
 	<div class="product_list">
@@ -112,6 +109,11 @@
 		</ul>
 		<p>备案信息：Copyright © 2010-2017 ebuy.com All Rights Reserved 粤ICP备16005678号-1 京公网安备1101001010   客服电话：400-400-400</p>
 	</div>
-
 </body>
-	
+
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script src="/js/jquery.min.js"></script>
+<!-- 包括所有已编译的插件 -->
+<script src="/js/bootstrap.min.js"></script>
+
+</html>

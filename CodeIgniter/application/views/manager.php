@@ -68,45 +68,48 @@
               </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>
-                <a href="#" data-pid="1" onclick="javascript:void(0)">2017001</a>
-              </td>
-              <td><span>customer</span></td>
-              <td><span>男</span></td>
-              <td><span>普通员工</span></td>
-              <td><span>10000/月</span></td>
-              <td><span>2017-06/16</span></td>
-              <td><span>2年</span></td>
-            </tr>
-            <tr>
-              <td>
-                <a href="#" data-pid="1" onclick="javascript:void(0)">2017002</a>
-              </td>
-              <td><span>custome2</span></td>
-              <td><span>女</span></td>
-              <td><span>普通员工</span></td>
-              <td><span>10000/月</span></td>
-              <td><span>2017-06/16</span></td>
-              <td><span>2年</span></td>
-            </tr>
+             <!--  <tr>
+                <td>
+                  <a href="#" data-pid="1" onclick="javascript:void(0)">20170001</a>
+                </td>
+                <td><span>employee</span></td>
+                <td><span>男</span></td>
+                <td><span>普通员工</span></td>
+                <td><span>10000/月</span></td>
+                <td><span>2017-06/16</span></td>
+                <td><span>2年</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#" data-pid="1" onclick="javascript:void(0)">20170002</a>
+                </td>
+                <td><span>employee2</span></td>
+                <td><span>男</span></td>
+                <td><span>普通员工</span></td>
+                <td><span>10000/月</span></td>
+                <td><span>2017-06/16</span></td>
+                <td><span>2年</span></td>
+              </tr> -->
             </tbody>
           </table>
         </div>
-        <div style="float: right">
-          <button type="button" onclick="publishProduct()" class="btn btn-primary" style="margin-right: 60px">+&nbsp;&nbsp;添加员工</button>
+        <div style="float: right; margin-right: 50px">
+            <button type="button" onclick="" class="btn btn-primary"><i class="fa fa-minus"></i>&nbsp;&nbsp;解雇员工</button>
+        </div>
+        <div style="float: right; margin-right: 50px">
+            <button type="button" onclick="publishEmployee()" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;&nbsp;添加员工</button>
         </div>
         <br>
         <div class="pagination-wrapper">
-          <ul class="pagination" id="products-pagination" data-list-url="/index.php/product/getProduct" data-table="#product-list" data-pages="0" data-num-url="/index.php/product/productNum" data-current-page="0" data-single-num="10" data-render="renderProduct(data[i])">
+          <ul class="pagination" id="products-pagination" data-list-url="/index.php/employee/getEmployee" data-table="#product-list" data-pages="0" data-num-url="/index.php/employee/getEmployeeNum" data-current-page="0" data-single-num="10" data-render="renderEmployee(data[i])">
           <li class="disabled"><a href="javascript:void(0)" data-page="0" onclick="changePage(this)">«</a></li><li class="active"><a href="javascript:void(0)" data-page="0" onclick="changePage(this)">1</a></li><li class="disabled"><a href="javascript:void(0)" data-page="0" onclick="changePage(this)">»</a></li></ul>
         </div>
       </div>
 
-      <!-- wangEditor -->
+      <!-- Add employee -->
       <div id="product" class="clearfix hidden">
       <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工信息</h3>
-        <form action="/index.php/product/addProduct" method="post" role="form" class="form-horizontal" id="product-data">
+        <form action="http://127.0.0.1/index.php/product/addProduct" method="post" role="form" class="form-horizontal" id="product-data">
           <input type="number" name="pid" id="pid" value="" class="hidden">
           <div class="form-group">
             <label for="name" class="col-sm-1 control-label">员工编号:</label>
@@ -151,7 +154,7 @@
             </div>
           </div>
           <div class="form-group" style="margin-right: 80px">
-            <button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">Save</button>
+            <button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">&nbsp;保存&nbsp;</button>
           </div>
         </form>
       </div>
@@ -165,5 +168,5 @@
 <!-- 编辑器 -->
 <script src="/js/wangEditor.min.js"></script>
 
-<script src="/js/admin.js"></script>
+<script src="/js/manager.js"></script>
 </html>
