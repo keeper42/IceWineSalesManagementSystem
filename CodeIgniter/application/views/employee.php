@@ -78,7 +78,7 @@
 
 			<!-- wangEditor -->
 			<div id="product" class="clearfix hidden">
-				<!-- <h3 id="func-name"></h3> -->
+				<h3 id="func-name"></h3>
 				<h3 style="font-weight: bold; margin-left: 5px; margin-bottom: 20px;">添加产品</h3><br/>
 				<form action="/index.php/product/addProduct" method="post" role="form" class="form-horizontal" id="product-data">
 					<input type="number" name="pid" id="pid" value="" class="hidden">

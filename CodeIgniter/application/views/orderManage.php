@@ -68,7 +68,6 @@
               </tr>
             </thead>
             <tbody >
-            <!-- tbody 内的仅仅是样例，现在是硬编码的，后面就是后台的事情了吧？ -->
             <tr>
               <td><a href="#" data-pid="1" onclick="javascript:void(0)">201706160101</a></td>
               <td><span>customer</span></td>

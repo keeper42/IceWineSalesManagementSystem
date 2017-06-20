@@ -68,7 +68,7 @@
                 <th>备注</th>
               </tr>
             </thead>
-            <tbody ><!-- tbody 内的仅仅是样例，现在是硬编码的，后面就是后台的事情了吧？ -->
+            <tbody >
             <tr>
               <td width="200" ><span>20170010616</span></td>
               <td>
@@ -156,5 +156,5 @@
 <!-- 编辑器 -->
 <script src="/js/wangEditor.min.js"></script>
 
-<script src="/js/admin.js"></script>
+<script src="/js/manager.js"></script>
 </html>

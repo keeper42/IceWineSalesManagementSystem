@@ -107,5 +107,5 @@
 <!-- 编辑器 -->
 <script src="/js/wangEditor.min.js"></script>
 
-<script src="/js/admin.js"></script>
+<script src="/js/manager.js"></script>
 </html>

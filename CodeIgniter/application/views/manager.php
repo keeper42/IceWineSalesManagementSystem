@@ -28,7 +28,7 @@
           <a class="btn btn-danger" id="logout" href="/index.php/home/logout">logout</a>
         </li>
         <li class="list menu-focus">
-          <a href="/index.php/manager" data-target="products">
+          <a href="/index.php/manager" data-target="employees">
             <i class="fa fa-group" aria-hidden="true"></i>
             <span style="font-size: 16px">员工管理</span>
           </a>
@@ -52,112 +52,115 @@
     <div class="container">
       <div id="hints"></div>
       <div id="home" class="hidden"></div>
-      <div id="employee" class="" style="margin-top: 20px;" >
-      <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工管理</h3>
-        <div>
-          <table class="table table-striped table-hover" id="product-list">
-            <thead>
-              <tr>
-                <th>员工编号</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>职位 </th>
-                <th>工资</th>
-                <th>入职时间</th>
-                <th>合同时间</th>
-              </tr>
-            </thead>
-            <tbody>
-             <!--  <tr>
-                <td>
-                  <a href="#" data-pid="1" onclick="javascript:void(0)">20170001</a>
-                </td>
-                <td><span>employee</span></td>
-                <td><span>男</span></td>
-                <td><span>普通员工</span></td>
-                <td><span>10000/月</span></td>
-                <td><span>2017-06/16</span></td>
-                <td><span>2年</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="#" data-pid="1" onclick="javascript:void(0)">20170002</a>
-                </td>
-                <td><span>employee2</span></td>
-                <td><span>男</span></td>
-                <td><span>普通员工</span></td>
-                <td><span>10000/月</span></td>
-                <td><span>2017-06/16</span></td>
-                <td><span>2年</span></td>
-              </tr> -->
-            </tbody>
-          </table>
-        </div>
-        <div style="float: right; margin-right: 50px">
-            <button type="button" onclick="" class="btn btn-primary"><i class="fa fa-minus"></i>&nbsp;&nbsp;解雇员工</button>
-        </div>
-        <div style="float: right; margin-right: 50px">
-            <button type="button" onclick="publishEmployee()" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;&nbsp;添加员工</button>
-        </div>
-        <br>
-        <div class="pagination-wrapper">
-          <ul class="pagination" id="products-pagination" data-list-url="/index.php/employee/getEmployee" data-table="#product-list" data-pages="0" data-num-url="/index.php/employee/getEmployeeNum" data-current-page="0" data-single-num="10" data-render="renderEmployee(data[i])">
-          <li class="disabled"><a href="javascript:void(0)" data-page="0" onclick="changePage(this)">«</a></li><li class="active"><a href="javascript:void(0)" data-page="0" onclick="changePage(this)">1</a></li><li class="disabled"><a href="javascript:void(0)" data-page="0" onclick="changePage(this)">»</a></li></ul>
-        </div>
+      <!-- employees -->
+      <div id="employees" class="" style="margin-top: 20px;" >
+        <h3 style="font-weight: bold; margin-left: 10px; margin-bottom: 20px;">员工管理</h3>
+          <div>
+            <table class="table table-striped table-hover" id="employee-list">
+              <thead>
+                <tr>
+                  <th>员工编号</th>
+                  <th>姓名</th>
+                  <th>性别</th>
+                  <th>职位 </th>
+                  <th>工资</th>
+                  <th>入职时间</th>
+                  <th>合同时间</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div style="float: right; margin-right: 50px">
+              <button type="button" onclick="dismissEmployee()" class="btn btn-primary"><i class="fa fa-minus"></i>&nbsp;&nbsp;解雇员工</button>
+          </div>
+          <div style="float: right; margin-right: 50px">
+              <button type="button" onclick="publishEmployee()" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;&nbsp;添加员工</button>
+          </div>
+          <br/>
+          <!-- Load the contents of the tbody -->
+          <div class="pagination-wrapper">
+              <ul class="pagination" id="employees-pagination" data-list-url="/index.php/employee/getEmployee" data-table="#employee-list" data-pages="0" data-num-url="/index.php/employee/getEmployeeNum" data-current-page="0" data-single-num="10" data-render="renderEmployee(data[i])"></ul>
+          </div>
       </div>
 
-      <!-- Add employee -->
-      <div id="product" class="clearfix hidden">
-      <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工信息</h3>
-        <form action="http://127.0.0.1/index.php/product/addProduct" method="post" role="form" class="form-horizontal" id="product-data">
-          <input type="number" name="pid" id="pid" value="" class="hidden">
-          <div class="form-group">
-            <label for="name" class="col-sm-1 control-label">员工编号:</label>
-            <div class="col-sm-11">
-              <input type="text" name="name" id="name" class="form-control" required="required">
+      <!-- employee -->
+      <div id="employee" class="clearfix hidden">
+        <h3 id="func-name"></h3>
+        <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工信息</h3>
+          <form action="/index.php/employee/addEmployee" method="post" role="form" class="form-horizontal" id="employee-data">
+            <div class="form-group">
+              <label for="pid" class="col-sm-1 control-label">编号:</label>
+              <div class="col-sm-11">
+                <input type="text" name="pid" id="pid" class="form-control" required="required">
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="name" class="col-sm-1 control-label">姓名:</label>
-            <div class="col-sm-11">
-              <input type="text" name="name" id="name" class="form-control" required="required">
+            <div class="form-group">
+              <label for="name" class="col-sm-1 control-label">姓名:</label>
+              <div class="col-sm-11">
+                <input type="text" name="name" id="name" class="form-control" required="required">
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="img" class="col-sm-1 control-label">性别:</label>
-            <div class="col-sm-11">
-              <input type="text" name="img" id="img" class="form-control" required="required">
+            <div class="form-group">
+              <label for="sex" class="col-sm-1 control-label">性别:</label>
+              <div class="col-sm-11">
+                <input type="text" name="sex" id="sex" class="form-control" required="required">
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="price" class="col-sm-1 control-label">职位:</label>
-            <div class="col-sm-11">
-              <input type="number" name="price" id="price" class="form-control" required="required">
+            <div class="form-group">
+              <label for="position" class="col-sm-1 control-label">职位:</label>
+              <div class="col-sm-11">
+                <input type="text" name="position" id="position" class="form-control" required="required">
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="stock" class="col-sm-1 control-label">薪水:</label>
-            <div class="col-sm-11">
-              <input type="number" name="stock" id="stock" class="form-control" required="required">
+            <div class="form-group">
+              <label for="wage" class="col-sm-1 control-label">薪水:</label>
+              <div class="col-sm-11">
+                <input type="text" name="wage" id="wage" class="form-control" required="required">
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="stock" class="col-sm-1 control-label">入职时间:</label>
-            <div class="col-sm-11">
-              <input type="number" name="stock" id="stock" class="form-control" required="required">
+            <div class="form-group">
+              <label for="entry_time" class="col-sm-1 control-label">入职时间:</label>
+              <div class="col-sm-11">
+                <input type="text" name="entry_time" id="entry_time" class="form-control" required="required">
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="stock" class="col-sm-1 control-label">合同时间:</label>
-            <div class="col-sm-11">
-              <input type="number" name="stock" id="stock" class="form-control" required="required">
+            <div class="form-group">
+              <label for="contract_time" class="col-sm-1 control-label">合同时间:</label>
+              <div class="col-sm-11">
+                <input type="text" name="contract_time" id="contract_time" class="form-control" required="required">
+              </div>
             </div>
-          </div>
-          <div class="form-group" style="margin-right: 80px">
-            <button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">&nbsp;保存&nbsp;</button>
-          </div>
-        </form>
+            <div class="form-group" style="float: right; margin-right: 10px;">
+              <button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">&nbsp;保存&nbsp;</button>
+            </div>
+          </form>
       </div>
+      
+      <!-- dismiss_employee -->
+      <div id="dismiss_employee" class="clearfix hidden">
+          <h3 id="func-name"></h3>
+          <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工信息</h3>
+            <form action="/index.php/employee/dismissEmployee" method="post" role="form" class="form-horizontal" id="dismiss-employee-data">
+              <div class="form-group">
+                <label for="pid" class="col-sm-1 control-label">编号:</label>
+                <div class="col-sm-11">
+                  <input type="text" name="pid" id="pid" class="form-control" required="required">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name" class="col-sm-1 control-label">姓名:</label>
+                <div class="col-sm-11">
+                  <input type="text" name="name" id="name" class="form-control" required="required">
+                </div>
+              </div>
+              <div class="form-group" style="float: right; margin-right: 10px;">
+                <button type="button" data-loading-text="Svaing..." onclick="dismiss(this)" class="btn btn-primary pull-right save">&nbsp;解雇&nbsp;</button>
+              </div>
+            </form>
+      </div>
+
     </div>
   </div>
 </body>

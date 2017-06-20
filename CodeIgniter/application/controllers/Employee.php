@@ -11,14 +11,16 @@ class Employee extends CI_Controller {
 		$this->load->helper('url');
 	}
 
-	public function index() {
+	public function index($id = False) {
 		$this->account->login();
 
 		if ($_SESSION['user']->authority < 666) {
 			echo "Permission denied";
 			exit();
 		}
+
 		$data['user'] = $_SESSION['user'];
+		// $data['employee'] = $this->employee->getEmloyeeById($id);
 		$this->load->view('employee', $data);
 	}
 
@@ -39,7 +41,15 @@ class Employee extends CI_Controller {
 	}
 
 	public function getEmployeeById() {
-		echo json_encode($this->employee->getEmployeeById($this->input->get('eid')), JSON_UNESCAPED_UNICODE);
+		echo json_encode($this->employee->getEmployeeById($this->input->get('pid')), JSON_UNESCAPED_UNICODE);
+	}
+
+	public function addEmployee() {
+		echo $this->employee->addEmployee();
+	}
+
+	public function dismissEmployee(){
+		echo $this->employee->dismissEmployee();
 	}
 
 }
