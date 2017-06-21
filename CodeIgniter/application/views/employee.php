@@ -58,15 +58,19 @@
 					<table class="table table-striped table-hover" id="product-list">
 						<thead>
 							<tr>
-								<th>产品</th>
+								<th>产品编号</th>
+								<th>产品名称</th>
 								<th width="100">库存</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
-					</table>
+					</table>	
 				</div>
 				<div style="float: right; margin-right: 30px">
-					<button type="button" onclick="publishProduct()" class="btn btn-primary"><i class="fa fa-plus" ></i> 添加产品</button>
+				    <button type="button" onclick="deleteProduct()" class="btn btn-primary"><i class="fa fa-minus"></i>&nbsp;删除产品</button>
+				</div>
+				<div style="float: right; margin-right: 40px">
+					<button type="button" onclick="publishProduct()" class="btn btn-primary"><i class="fa fa-plus" ></i>&nbsp;添加产品</button>
 				</div>
 				<br/>
 			    <!-- Load the contents of the tbody -->
@@ -118,6 +122,23 @@
 				</form>
 			</div>
 			
+			<!-- delete product -->
+			<div id="delete_product" class="clearfix hidden">
+			    <h3 id="func-name"></h3>
+			    <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">删除产品</h3>
+			      <form action="/index.php/product/deleteProduct" method="post" role="form" class="form-horizontal" id="delete-product-data">
+			        <div class="form-group">
+			          <label for="gid" class="col-sm-1 control-label">产品编号:</label>
+			          <div class="col-sm-11">
+			            <input type="text" name="gid" id="gid" class="form-control" required="required">
+			          </div>
+			        </div>
+			        <br>
+			        <div class="form-group" style="float: right; margin-right: 10px;">
+			          <button type="button" data-loading-text="Delete..." onclick="confirmDelete(this)" class="btn btn-primary pull-right save">确定删除</button>
+			        </div>
+			      </form>
+			</div>
 		</div>
 	</div>
 </body>

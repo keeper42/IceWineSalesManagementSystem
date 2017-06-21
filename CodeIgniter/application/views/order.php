@@ -35,9 +35,9 @@
             <a href="/index.php/home/login" class="login">亲，请登录，免费注册 </a>
         <?php } ?></li>
         <div class="space"></div>
-        <li><a href="/">商城首页</a></li>
-        <li><i class=""></i><a href="/index.php/shopping"> 购物车</a></li>
-        <li><i class=""></i><a href="/index.php/personal"> 个人中心</a></li>
+        <li><a href="/"><font size="4">商城首页</font></a></li>
+        <li><i class=""></i><a href="/index.php/shopping"><font size="4"> 购物车</font></a></li>
+        <li><i class=""></i><a href="/index.php/personal"><font size="4">个人中心</font></a></li>
     </div>
 </div>
 <!--地址 -->

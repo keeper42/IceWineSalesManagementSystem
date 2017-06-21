@@ -71,4 +71,24 @@ class Order extends CI_Controller {
 		$this->order->confirmOrder($orderId);
 		$this->load->view('success');
 	}
+
+	public function getOrdersNum() {
+		echo json_encode($this->order->getOrdersNum());
+	}
+
+	public function getOrders(){
+		echo json_encode($this->order->getOrders2(), JSON_UNESCAPED_UNICODE);
+	}
+
+	public function getOrderById() {
+		echo json_encode($this->order->getOrderById($this->input->get('id')), JSON_UNESCAPED_UNICODE);
+	}
+
+	public function orderHandler() {
+		echo $this->order->orderHandler();
+	}
+
+	public function updateOrder() {
+		echo $this->order->updateOrder();
+	}
 }

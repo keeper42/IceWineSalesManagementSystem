@@ -22,7 +22,7 @@
 <!--顶部导航条 -->
 <div class="row navbar-default navbar-fixed-top" role="navigation"">
       <div class="col-sm-12 col-md-6 col-md-offset-3">
-        <div class="header_nav  ">
+        <div class="header_nav">
             <li>
             <?php if (isset($_SESSION['user'])) {
               $user = $_SESSION['user'];?>
@@ -33,12 +33,33 @@
                 <a href="/index.php/home/login" class="login">亲，请登录</a>
             <?php } ?></li>
             <div class="space"></div>
-            <li><a href="/">商城首页</a></li>
-            <li><i class="fa fa-shopping-cart"></i><a href="/index.php/shopping"> 购物车</a></li>
-            <li><i class=" fa fa-user"></i><a href="/index.php/personal"> 个人中心</a></li>
+            <li><a href="/"><font size="4">商城首页</font></a></li>
+            <li><a href="/index.php/shopping"><font size="4"> 购物车</font></a></li>
+            <li><a href="/index.php/personal"><font size="4">个人中心</font></a></li>
         </div>
     </div>
 </div>
+
+  <!-- 顶部导航栏 -->
+  <div class="header">
+    <div class="header_nav">
+      <li>
+        <?php if (isset($_SESSION['user'])) {
+          $user = $_SESSION['user'];?>
+            <img src="<?php echo $user->avatar ?>" class="img-circle" width=32 height=32 alt="avatar">
+            <?php echo $user->name ?>
+            <a href="/index.php/home/logout">[退出]</a>
+        <?php } else { ?>
+            <a href="/index.php/home/login" class="login">亲，请登录</a>
+        <?php } ?>
+      </li>
+
+      <div class="space"></div>
+      <li><a href="/">商城首页</a></li>
+      <li><a href="/index.php/shopping">购物车</a></li>
+      <li><a href="/index.php/personal">个人中心</a></li>
+    </div>
+  </div>
 
 <!-- 付款成功 -->
 <div align="center">
@@ -46,7 +67,6 @@
    <div class="status">
      <div class="successInfo">
        <ul>
-         <br/>
          <li font-size="14px">您已成功付款~</li>
          <!-- <li>付款金额<em>¥2680.00</em></li> -->
          <div class="user-info">

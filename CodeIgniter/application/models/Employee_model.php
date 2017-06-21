@@ -18,7 +18,10 @@ class Employee_model extends CI_Model {
 	}
 
 	public function getEmployeeById($id) {
-		if (empty($id) && $id != 0) {
+		// if (empty($id) && $id != 0) {
+		// 	return -1;
+		// }
+		if(empty($id)) {
 			return -1;
 		}
 		$query = $this->db->where('id', $id)->get('employee');

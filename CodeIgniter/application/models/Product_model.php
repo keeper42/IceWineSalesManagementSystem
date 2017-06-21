@@ -59,4 +59,20 @@ class Product_model extends CI_Model {
 		}
 		return $pid;
 	}
+
+	public function deleteProduct() {
+		// 获取数据 检查数据合法性
+		$id = $this->input->post('gid');
+		if (empty($id) || !is_numeric($id) || $id < 0 ) {
+			return -1;
+		}
+
+		$query = $this->db->where('id', $id)
+		                  ->delete('product');
+		if($query) {
+			return 1;
+		} 
+		return -1;
+	}
+
 }

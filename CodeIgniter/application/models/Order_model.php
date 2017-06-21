@@ -43,16 +43,33 @@ class Order_model extends CI_Model {
 		return $this->db->update('order', $data, $where);
 	}
 
+	public function getOrdersNum() {
+		return $this->db->count_all('order');
+	}
+
 	public function getOrders($userId) {
 		$result = array();
 		$query = $this->db->select('id')
-									->where('user', $userId)
-									->where('confirm', '0')
-									->get('order');
+						  ->where('user', $userId)
+						  ->where('confirm', '0')
+						  ->get('order');
 		foreach ($query->result() as $orderid) {
 			$result[] = $orderid->id;
 		}
 		return $result;
+	}
+
+	public function getOrders2() {
+		$page = $this->input->post('page');
+		$pages = $this->input->post('pages');
+		if ($page < 0) {
+			$page = 0;
+		} else if($page == $pages) {
+			$page = $pages - 1;
+		}
+		$this->db->limit(10, ($page) * 10);
+		$query = $this->db->get('order');
+		return $query->result();
 	}
 
 	public function getOrderProduct($orderId) {
@@ -71,6 +88,48 @@ class Order_model extends CI_Model {
 			$products[] = array('product' => $product->row(), 'order' => $order);
 		}
 		return $products;
+	}
+
+	public function getOrderById($id) {
+		if (empty($id)) {
+			return -1;
+		}
+		$query = $this->db->where('id', $id)->get('order');
+		return $query->row();
+	}
+
+	public function orderHandler() {
+		// 处理订单
+	}
+
+	public function updateOrder() {
+		// 获取数据 检查数据合法性
+		$id = $this->input->post('oid');
+		$state = $this->input->post('state');
+		if(empty($id) || empty($state)) {
+			echo "null";
+			return -1;
+		}
+		$state = urldecode($state);
+		if($state == "未发货" || $state === "未发货") {
+			$state = 0;
+		} else if ($state == "已发货" || $state === "已发货"){
+			$state = 1;
+		} else {
+			// return -1;
+		}
+
+		// 有id的话执行更新操作
+		$orderNum = $this->db->count_all('order');
+		if (!is_numeric($id) || $id < 0 || $id > $orderNum) {
+			echo "id error";
+			return -1;
+		} else {
+			$where = 'id='.$id;
+			$data = array('id'=>$id, 'state'=>$state);
+			$this->db->update('order', $data, $where);
+		}
+		return $id;
 	}
 
 	public function addAmount() {

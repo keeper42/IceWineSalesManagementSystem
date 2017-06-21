@@ -28,13 +28,13 @@
 				    <a href="/index.php/home/login" class="login">亲，请登录</a>
 				<?php } ?>
 			</li>
-
 			<div class="space"></div>
 			<li><a href="/">商城首页</a></li>
-			<li><a href="/index.php/shopping">购物车</a></li>
+			<li><a href="/index.php/shopping"> 购物车</a></li>
 			<li><a href="/index.php/personal">个人中心</a></li>
 		</div>
 	</div>
+	
 	<div class="mainproduct">
 		<div id="myCarousel" class="carousel slide">
 		    <!-- 轮播（Carousel）指标 -->

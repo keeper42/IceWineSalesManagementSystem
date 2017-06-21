@@ -1,31 +1,32 @@
-// Created by LJF on 2017/06/19
-var employeeEditor;
+var orderEditor;
 
-var control = ["home", "employees", "employee"];
+var currentPage;
 
-// 调用函数，加载页面
-window.onload = function(){
-	$("#menu-control").click(function(){
+var control = ['home', 'orders', 'order'];
+
+window.onload = function() {
+	$("#menu-control").click(function() {
 		$("#nav-list li").toggleClass("min");
 		$(".container").toggleClass("max");
 		$("nav").toggleClass("min-nav");
 		$(this).blur();
 	});
 
-	employeeEditor = initEditor('content');
-	renderPagination(false, "#employees-pagination");
+	orderEditor = initEditor("content");
+	renderPagination(false, "#orders-pagination");
 
-	$(".list a").click(function(){
+	// 添加切换页面事件
+	$(".list a").click(function () {
 		$(this).parent().parent().find('.list').removeClass('menu-focus');
 		$(this).parent().addClass('menu-focus');
-		var current = $(this).data('target');
+		var current = $(this).data("target");
 		for (var i = 0; i < control.length; i++) {
 			if (control[i] !== current) {
 				$("#" + control[i]).addClass("hidden");
 			} else if($("#" + current).hasClass("hidden")) {
 				$("#" + current).removeClass("hidden");
-				if (current == "employees"){
-					renderPagination(false, "#employees-pagination");
+				if (current == "orders") {
+					renderPagination(false, "#orders-pagination");
 				}
 			}
 		}
@@ -35,37 +36,40 @@ window.onload = function(){
 
 ///////////////////////////////////Pagination Begin///////////////////////////
 /**
- * 获取员工等的数量
+ * 获取订单的数量
  * @param {string} paginationId 分页组件的id
  * @param  {function} callback 回调函数 当执行成功后会调用该函数。
  */
-function updateArticleNum(paginationId, callback){
+function updateArticleNum(paginationId, callback) {
 	$pagination = $(paginationId);
 	$.ajax({
-		type: "GET",
-		dataType: "html",
-		url: $pagination.data('num-url'),
-		data: '',
-		success: function(data){
-			// console.log(data);
-			if(data != "-1"){
-				tmpNum = parseInt(data);
-				pages = parseInt(tmpNum / $pagination.data('single-num')) + (tmpNum % 10 > 0?1:0);
-				currentPage = $pagination.data('current-page');
-				while(currentPage > pages - 1 && currentPage > 0){
-					currentPage--;
-				}
-				$(paginationId).data('pages', pages);
-				$(paginationId).data('current-page', currentPage);
-				callback(true, paginationId);
-			} else{
-				addDangerInfo("获取数量失败~");
-			}
-		},error: function(data){
+	  type: "GET",
+	  dataType: "html",
+	  url: $pagination.data('num-url'),
+	  data: '',
+	  success: function (data) {
+	  	if (data != "-1") {
+	  		tmpNum = parseInt(data);
+	  		pages = parseInt(tmpNum / $pagination.data('single-num')) + (tmpNum % 10 > 0?1:0);
+	  		currentPage = $pagination.data('current-page');
+	  		// console.log(currentPage);
+	  		while (currentPage > pages - 1 && currentPage > 0) {
+	  			currentPage--;
+	  		}
+			$(paginationId).data('pages', pages);
+			$(paginationId).data('current-page', currentPage);
+	  		callback(true, paginationId);
+	  	} else {
+	  		addDangerInfo("获取数量失败~");
+	  	}
+	  },
+	  error: function(data) {
 			addDangerInfo("获取数量失败~");
-		}
+	  }
 	});
 }
+
+
 /**
  * 更新分页状态，当前为第一页时将第一个设置为disabled, 当前为最后一页时将最后一个设置为disabled;
  * @param {string} id 分页控件Id
@@ -75,11 +79,12 @@ function updatePaginationState(id) {
 	$pagination = $(id);
 	currentPage = $pagination.data('current-page');
 	pages = $pagination.data('pages');
-	if (currentPage == 0) {
-		$pagination.find(":first").addClass("disabled");
-	} else {
-		$pagination.find(":first").removeClass("disabled");
-	}
+	// if (currentPage == -1) {
+	// 	$pagination.find(":first").addClass("disabled");
+	// } else {
+	// 	$pagination.find(":first").removeClass("disabled");
+	// }
+
 	if (currentPage == pages - 1) {
 		$pagination.children(":last").addClass("disabled");
 	} else {
@@ -91,24 +96,29 @@ function updatePaginationState(id) {
  * @param  {Boolean} flag    标志是否被回调
  * @param {string} paginationId 需要渲染分页组件的ID
  */
-function renderPagination(flag=false, paginationId=null) {
+function renderPagination(flag = false, paginationId = null) {
 	if (!flag) {
 		updateArticleNum(paginationId, renderPagination);
 		return ;
 	}
-	$pagination = $(paginationId);
+	$pagination = $(paginationId); // patinationId is #orders-pagination;
 	$pagination.children().remove();
 	renderList(paginationId);
-	if (pages == 0) {return ;}
-	$pagination.append($('<li><a href="javascript:void(0)" data-page=0 onclick="changePage(this)">&laquo</a></li>'));
+	if (pages == 0) {
+		return ;
+	}
+
+	$leftdom = $('<li><a href="javascript:void(0)" data-page=' + -1 + ' onclick="changePage(this)">&laquo</a></li>');
+	$pagination.append($leftdom);
 	for (var i = 1; i <= pages; i++) {
 		$dom = $('<li><a href="javascript:void(0)" data-page=' + (i - 1) + ' onclick="changePage(this)">' + i + '</a></li>');
 		$pagination.append($dom);
-		if (i == $pagination.data('current-page') + 1) {
-			$dom.addClass("active");
+		if(i == $pagination.data("current-page") + 1) {
+			$dom.addClass('active');
 		}
 	}
-	$pagination.append($('<li><a href="javascript:void(0)" data-page=' + ($pagination.data('pages') - 1) + ' onclick="changePage(this)">&raquo</a></li>'));
+	$rightdom = $('<li><a href="javascript:void(0)" data-page=' + ($pagination.data('pages')) + ' onclick="changePage(this)">&raquo</a></li>');
+	$pagination.append($rightdom);
 
 	updatePaginationState(paginationId);
 }
@@ -117,48 +127,86 @@ function renderPagination(flag=false, paginationId=null) {
  */
 function changePage(e) {
 	$li = $(e).parent();
-	if ($li.hasClass("active") || $li.hasClass("disabled")) {return ;}
+	if ($li.hasClass("active") || $li.hasClass("disabled")) {
+		return ;
+	}
 	currentPage = $(e).data("page");
+	// $pagination.data('current-page');
+
 	$pagination = $li.parent();
 	$pagination.find(".active").removeClass("active");
 	$pagination.find("a[data-page='" + currentPage + "']").parent().addClass("active");
-	renderList($pagination.attr('id'));
+	// $pid = $pagination.find('data-page');
+	// getPage(currentPage);
+	$pid  = "#" + $pagination.attr('id');
+	renderList($pid);
 
-	updatePaginationState($pagination.attr('id'));
+	updatePaginationState($pid);
+}
+
+/**
+ * 从服务器获取订单等的数据
+ */
+function renderList(paginationId) {
+	$pagination = $(paginationId);
+	page = currentPage;
+	pages = $pagination.data('pages');
+	// console.log(pages);
+	$.ajax({
+		type: "POST",
+		dataType: "html",
+		url: $pagination.data('list-url'),
+		data: "page=" + page + "&pages=" + pages,
+		success: function (data) {
+			if (data == -1) {
+				addDangerInfo(data.responseText);
+			}
+			data = $.parseJSON(data);
+			// 删除现有列表
+			$tbody = $($pagination.data('table')).find("tbody");
+			$tbody.find("tr").remove();
+			for (var i = 0; i < data.length; i++) {
+				// 插入获取的数据
+				$dom = eval($pagination.data('render'));
+				$tbody.append($dom);
+			}
+		},
+		error: function(data) {
+			addDangerInfo(data.responseText);
+		}
+	});
 }
 ///////////////////////////////////Pagination End///////////////////////////
-
 
 /**
  * 初始化编辑器
  */
 function initEditor(id) {
-	// 阻止输出log
 	wangEditor.config.printLog = false;
 }
 
 /**
- * 保存员工
+ * 保存订单
  * @param  {dom} e 执行保存操作的按钮
  */
 function save(e) {
 	$button = $(e);
 	$button.button('loading');
+	console.log($('#order-data').serialize());
 	$.ajax({
 		type: "POST",
 		dataType: "html",
-		url: "/index.php/employee/addEmployee",
-		data: $('#employee-data').serialize(),
-		success: function(data){
-			// console.log(data);
+		url: "/index.php/order/updateOrder",
+		data: $('#order-data').serialize(),
+		success: function(data) {
+			console.log(data);
 			$button.button('reset');
 			if(data < 0){
 				addDangerInfo("error:" + data);
 				return;
 			}
-			$("#pid").val(data);
-			
-			$dom = addSuccessInfo("Save employee successfully~~");
+
+			$dom = addSuccessInfo("Save order successfully~~");
 	  		$dom.delay(1000).hide(1000, function() {
 	  			$(this).remove();
 	  		});
@@ -169,6 +217,71 @@ function save(e) {
 		}
 	});
 }
+/**
+ * 切换到编辑订单视图
+ * @param  {dom} e 触发编辑员工的按钮
+ */
+function editOrder(e) {
+	id = $(e).data('oid');
+	publishOrder();
+	$dom = addInfoInfo("正在获取商品信息");
+	$.ajax({
+		type: "GET", 
+		dataType: "html", 
+		url:  '/index.php/order/getOrderById',
+		data: "id=" + id,
+		success: function (data) {
+			$dom.hide(1000, function() {
+				$dom.remove();
+			});
+			data = $.parseJSON(data);
+			$('#oid').val(data.id);
+			if(data.state == 1) {
+				$('#state').val("已发货");
+			} else {
+				$('#state').val("未发货");
+			}
+
+		},
+		error: function(data) {
+			$dom.hide(1000, function() {
+				$dom.remove();
+			});
+			addDangerInfo(data.responseText);
+		}
+	});
+}
+
+function publishOrder() {
+	$("#orders").addClass("hidden");
+	$("#order").removeClass("hidden");
+	$("#id").val("");
+	$("#state").val("");
+}
+
+/**
+ * 生成一行order信息
+ * @param  {json} data 单个order信息
+ * @return {[dom]}      order的tr节点
+ */
+function renderOrder(data) {
+	var confirm;
+	var goodsStatus;
+	if (data.confirm == 1) {
+		confirm = "已支付";
+	} else {
+		confirm = "未支付";
+	}
+	if (data.state == 1) {
+		goodsStatus = "已发货";
+	} else {
+		goodsStatus = "未发货";
+	}
+	return $('<tr><td><span><a href="#" data-oid=' + data.id + ' onclick="editOrder(this)">' + data.id + '</td><td><span>' + data.user + '</span></td><td><span>' + data.address + 
+		     '</span></td><td><span>' + data.phone + '</span></td><td><span>' + confirm + 
+		     '</span></td><td><span>' + goodsStatus + '</span></td></tr>');    
+}
+
 
 ////////////////////////////////////////Show a infomation Begin//////////////////////////////
 /**
@@ -182,13 +295,13 @@ function addSuccessInfo(info) {
 /**
  * @param {string} info 要显示的消息
  */
- function addInfoInfo(info) {
- 	$tmp = $('<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + info + '</div>');
- 	$("#hints").prepend($tmp);
- 	return $tmp;
- }
- /**
- * @param {string} info 要警告的消息
+function addInfoInfo(info) {
+	$tmp = $('<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + info + '</div>');
+	$("#hints").prepend($tmp);
+	return $tmp;
+}
+/**
+ * @param {string} info 要显示的消息
  */
 function addWarningInfo(info) {
 	$tmp = $('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + info + '</div>');
@@ -205,158 +318,21 @@ function addDangerInfo(info) {
 }
 ////////////////////////////////////////Show a infomation End//////////////////////////////
 
-/**
- * 从服务器获取员工等的数据
- */
- function renderList(paginationId) {
- 	$pagination = $(paginationId);
- 	$.ajax({
- 	  type: "GET",
- 	  dataType: "html",
- 	  url: $pagination.data('list-url'),
- 	  data: "page=" + $pagination.data('current-page'),
- 	  success: function (data) {
- 	  	if (data == -1) {addDangerInfo(data.responseText);}
- 	  	data = $.parseJSON(data);
- 	  	// console.log(data);
-   		// 删除现有列表
-   		$tbody = $($pagination.data('table')).find("tbody");
-   		$tbody.find("tr").remove();
-   		for (var i = 0; i < data.length; i++) {
-   			// 插入获取的数据
-   			$dom = eval($pagination.data('render'));
-   			$tbody.append($dom);
-   		}
- 	  },
- 	  error: function(data) {
- 	  	addDangerInfo(data.responseText);
- 	  }
- 	});
- }
  /**
- * 生成一行employee信息
- * @param  {json} data 单个employee信息
- * @return {[dom]}      employee的tr节点
- */
-function renderEmployee(data) {
-	return $('<tr><td><a href="#" data-pid=' + data.id + ' onclick="editEmployee(this)">' + data.id +
-		     '</a></td><td><span>' + data.name + '</span></td><td><span>' + data.sex + 
-		     '</span></td><td><span>' + data.position + '</span></td><td><span>' + data.wage + 
-		     '</span></td><td><span>' + data.entry_time + '</span></td><td><span>' + data.contract_time + '</span></td></tr>');    
-}
-/**
- * 切换到编辑员工视图
- * @param  {dom} e 触发编辑员工的按钮
- */
-function editEmployee(e){
-	pid = $(e).data('pid');
-	publishEmployee();
-	$("#func-name").html("");
-	$dom = addInfoInfo("正在获取商品信息");
-	$.ajax({
-	  type: "GET",
-	  dataType: "html",
-	  url: '/index.php/employee/getEmployeeById',
-	  data: "pid=" + pid,
-	  success: function (data) {
-	  	$dom.hide(1000, function() {
-	  		$dom.remove();
-	  	});
-	  	data = $.parseJSON(data);
-	  	$("#pid").val(data.id);
-	  	$("#name").val(data.name);
-	  	$("#sex").val(data.sex);
-	  	$("#position").val(data.position);
-	  	$("#wage").val(data.wage);
-	  	$("#entry_time").val(data.entry_time);
-	  	$("#contract_time").val(data.contract_time);
-	  },
-	  error: function(data) {
-	  	$dom.hide(1000, function() {
-	  		$dom.remove();
-	  	});
-	  	addDangerInfo(data.responseText);
-	  }
-	});
-}
-/**
- * 切换到添加员工视图
- * 初始化内容
- */
-function publishEmployee() {
-	$("#employees").addClass("hidden");
-	$("#employee").removeClass("hidden");
-	$("#dismiss_employee").addClass("hidden");
-	$("#func-name").html("");
-	$("#pid").val("");
-	$("#name").val("");
-	$("#sex").val("");
-	$("#position").val("");
-	$("wage").val("");
-	$("entry_time").val("");
-	$("contract_time").val("");
-}
-/**
- * 切换到解雇员工视图
- * 初始化内容
- */
-function dismissEmployee() {
-	$("#employees").addClass("hidden");
-	$("#employee").addClass("hidden");
-	$("#dismiss_employee").removeClass("hidden");
-	$("#func-name").html("");
-	$("#pid").val("");
-	$("#name").val("");
-}
-/**
- * 解雇员工
- * @param  {dom} e 执行解雇操作的按钮
- */
-function dismiss(e){
-	$button = $(e);
-	$button.button('loading');
-	$.ajax({
-		type: "POST",
-		dataType: "html",
-		url: "/index.php/employee/dismissEmployee",
-		data: $('#dismiss-employee-data').serialize(),
-		success: function(data){
-			console.log(data);
-			$button.button('reset');
-			if(data < 0){
-				addDangerInfo("error:" + data);
-				return;
-			}
-			$("#pid").val(data);
-			
-			$dom = addSuccessInfo("Dismiss employee !!!");
-	  		$dom.delay(1000).hide(1000, function() {
-	  			$(this).remove();
-	  		});
-		},
-		error: function(data) {
-			$button.button('reset');
-			addDangerInfo("error:" + data.responseText);
-		}
-	});
-}
+  * 全选/全不选
+  * @param  {dom} e 触发该事件的控件
+  */
+ function markAll(e) {
+ 	$tbody = $(e).parent().parent().parent().parent().find("tbody");
+ 	if ($(e).is(":checked")) {
+ 		$tbody.find("input:checkbox").not(":checked").prop("checked", true);
+ 	} else {
+ 		$tbody.find("input:checkbox:checked").prop("checked", false);
+ 	}
+ }
 
 /**
- * 全选/全不选
- * @param  {dom} e 触发该事件的控件
- */
-function markAll(e) {
-	$tbody = $(e).parent().parent().parent().parent().find("tbody");
-	if ($(e).is(":checked")) {
-		$tbody.find("input:checkbox").not(":checked").prop("checked", true);
-	} else {
-		$tbody.find("input:checkbox:checked").prop("checked", false);
-	}
-}
-
-
-/**
- * 导出流水报表
+ * 导出订单
  */
 var idTmr;
 function  getExplorer() {
@@ -420,7 +396,6 @@ function method1(tableid) { //整个表格拷贝到EXCEL中
 	     tableToExcel(tableid);
 	 }
 }
-
 function Cleanup() {
      window.clearInterval(idTmr);
      CollectGarbage();
@@ -439,4 +414,3 @@ var tableToExcel = (function() {
      	window.location.href = uri + base64(format(template, ctx));
    }
  })();
-

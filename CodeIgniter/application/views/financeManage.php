@@ -57,41 +57,38 @@
       <div id="employee" class="" style="margin-top: 20px">
         <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">财务管理</h3>
         <div>
-          <table class="table table-striped table-hover" id="product-list">
+          <table class="table table-striped table-hover" id="finance-list">
             <thead>
               <tr>
-                <th width="200" >订单编号</th>
+                <th>订单编号</th>
                 <th>经手人</th>
                 <th>处理时间</th>
-                <th width="200" > 金额 </th>
-                <th >收入/支出</th>
-                <th>备注</th>
+                <th> 金额 </th>
+                <th width="150">收入/支出</th>
               </tr>
             </thead>
             <tbody >
             <tr>
-              <td width="200" ><span>20170010616</span></td>
+              <td><span>20170010616</span></td>
               <td>
                 <a href="/index.php/#" data-pid="1" onclick="javascript:void(0)">Tommy</a>
               </td>
               <td><span>2017/06/16</span></td>
               <td><span>270</span></td>
-              <td><span>支出</span></td>
-              <td><span>没有备注</span></td>
+              <td width="150"><span>支出</span></td>
             </tr>
             <tr>
-              <td width="200" ><span>20170010616</span></td>
+              <td><span>20170010616</span></td>
               <td> <a href="/index.php/#" data-pid="1" onclick="javascript:void(0)">Tommy</a></td>
               <td><span>2017/06/16</span></td>
               <td><span>270</span></td>
-              <td><span>支出</span></td>
-              <td><span>没有备注</span></td>
+              <td width="150"><span>支出</span></td>
             </tr>
             </tbody>
           </table>
         </div>
         <div style="float: right">
-          <button type="button" onclick="publishProduct()" class="btn btn-primary" style="margin-right: 60px">+&nbsp;&nbsp;添加订单</button>
+          <button type="button" onclick="method1('finance-list')" class="btn btn-primary" style="margin-right: 60px">&nbsp;流水报表&nbsp;</button>
         </div>
         <br>
         <div class="pagination-wrapper">
@@ -142,7 +139,7 @@
             </div>
           </div>
           <div class="form-group" style="margin-right: 80px">
-            <button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">Save</button>
+            <button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">保存</button>
           </div>
         </form>
       </div>

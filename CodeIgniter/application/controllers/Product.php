@@ -53,4 +53,9 @@ class Product extends CI_Controller {
 	public function addProduct() {
 		echo $this->product->addProduct();
 	}
+
+	public function deleteProduct() {
+		echo $this->product->deleteProduct();
+	}
+
 }
