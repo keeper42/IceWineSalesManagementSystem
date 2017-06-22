@@ -1,8 +1,8 @@
-var orderEditor;
+var financeEditor;
 
 var currentPage;
 
-var control = ['home', 'orders', 'order'];
+var control = ['home', 'finances', 'finance'];
 
 window.onload = function() {
 	$("#menu-control").click(function() {
@@ -12,8 +12,8 @@ window.onload = function() {
 		$(this).blur();
 	});
 
-	orderEditor = initEditor("content");
-	renderPagination(false, "#orders-pagination");
+	financeEditor = initEditor("content");
+	renderPagination(false, "#finances-pagination");
 
 	// 添加切换页面事件
 	$(".list a").click(function () {
@@ -25,8 +25,8 @@ window.onload = function() {
 				$("#" + control[i]).addClass("hidden");
 			} else if($("#" + current).hasClass("hidden")) {
 				$("#" + current).removeClass("hidden");
-				if (current == "orders") {
-					renderPagination(false, "#orders-pagination");
+				if (current == "finances") {
+					renderPagination(false, "#finances-pagination");
 				}
 			}
 		}
@@ -36,7 +36,7 @@ window.onload = function() {
 
 ///////////////////////////////////Pagination Begin///////////////////////////
 /**
- * 获取订单的数量
+ * 获取的数量
  * @param {string} paginationId 分页组件的id
  * @param  {function} callback 回调函数 当执行成功后会调用该函数。
  */
@@ -101,7 +101,7 @@ function renderPagination(flag = false, paginationId = null) {
 		updateArticleNum(paginationId, renderPagination);
 		return ;
 	}
-	$pagination = $(paginationId); // patinationId is #orders-pagination;
+	$pagination = $(paginationId); // patinationId is #finances-pagination;
 	$pagination.children().remove();
 	renderList(paginationId);
 	if (pages == 0) {
@@ -145,7 +145,7 @@ function changePage(e) {
 }
 
 /**
- * 从服务器获取订单等的数据
+ * 从服务器获取财务等的数据
  */
 function renderList(paginationId) {
 	$pagination = $(paginationId);
@@ -178,51 +178,6 @@ function renderList(paginationId) {
 }
 ///////////////////////////////////Pagination End///////////////////////////
 
-/**
- * 录入订单
- */
-function uploadOrder(e) {
-	$button = $(e);
-	$button.button('loading');
-
-	// 获取员工姓名
-	var employeeName = $('#nav-list').find('li').eq(0).find('a').eq(1).text();
-	// 遍历tbody获取td中的值
-	var orderIdArray = new Array();
-	$("#order-list").find("tr").each(function() {
-		var tdArray = $(this).children();
-		var orderId = tdArray.eq(0).find("span").text();
-		orderIdArray.push(orderId);
-	});
-	var json_string = JSON.stringify({ename: employeeName, array: orderIdArray});
-	console.log(json_string);
-	// ajax and php deal with json
-	$.ajax({
-		type: "POST",
-		datatype: "json",
-		url: "/index.php/order/uploadOrders",
-		data: json_string, 
-		success: function(data) {
-			console.log(data);
-			$button.button('reset');
-			if(data < 0){
-				addDangerInfo("error:" + data);
-				return;
-			}
-
-			$dom = addSuccessInfo("Save order successfully~~");
-	  		$dom.delay(1000).hide(1000, function() {
-	  			$(this).remove();
-	  		});
-		},
-		error: function(data) {
-			$button.button('reset');
-			addDangerInfo("error:" + data.responseText);
-		}
-	});
-}
-
-
 
 /**
  * 初始化编辑器
@@ -232,100 +187,33 @@ function initEditor(id) {
 }
 
 /**
- * 保存订单
+ * 保存财务
  * @param  {dom} e 执行保存操作的按钮
  */
 function save(e) {
-	$button = $(e);
-	$button.button('loading');
-	console.log($('#order-data').serialize());
-	$.ajax({
-		type: "POST",
-		dataType: "html",
-		url: "/index.php/order/updateOrder",
-		data: $('#order-data').serialize(),
-		success: function(data) {
-			console.log(data);
-			$button.button('reset');
-			if(data < 0){
-				addDangerInfo("error:" + data);
-				return;
-			}
-
-			$dom = addSuccessInfo("Save order successfully~~");
-	  		$dom.delay(1000).hide(1000, function() {
-	  			$(this).remove();
-	  		});
-		},
-		error: function(data) {
-			$button.button('reset');
-			addDangerInfo("error:" + data.responseText);
-		}
-	});
+	
 }
 /**
  * 切换到编辑订单视图
  * @param  {dom} e 触发编辑员工的按钮
  */
-function editOrder(e) {
-	id = $(e).data('oid');
-	publishOrder();
-	$dom = addInfoInfo("正在获取商品信息");
-	$.ajax({
-		type: "GET", 
-		dataType: "html", 
-		url:  '/index.php/order/getOrderById',
-		data: "id=" + id,
-		success: function (data) {
-			$dom.hide(1000, function() {
-				$dom.remove();
-			});
-			data = $.parseJSON(data);
-			$('#oid').val(data.id);
-			if(data.state == 1) {
-				$('#state').val("已发货");
-			} else {
-				$('#state').val("未发货");
-			}
-
-		},
-		error: function(data) {
-			$dom.hide(1000, function() {
-				$dom.remove();
-			});
-			addDangerInfo(data.responseText);
-		}
-	});
+function editFinance(e) {
+	
 }
 
-function publishOrder() {
-	$("#orders").addClass("hidden");
-	$("#order").removeClass("hidden");
-	$("#id").val("");
-	$("#state").val("");
+function publishFinance() {
+
 }
 
 /**
- * 生成一行order信息
- * @param  {json} data 单个order信息
- * @return {[dom]}      order的tr节点
+ * 生成一行 finance信息
+ * @param  {json} data 单个finance信息
+ * @return {[dom]}     finance的tr节点
  */
-function renderOrder(data) {
-	var confirm;
-	var goodsStatus;
-	if (data.confirm == 1) {
-		confirm = "已支付";
-	} else {
-		confirm = "未支付";
-	}
-	if (data.state == 1) {
-		goodsStatus = "已发货";
-	} else {
-		goodsStatus = "未发货";
-	}
-	return $('<tr><td><span><a href="#" data-oid=' + data.id + ' onclick="editOrder(this)">' + data.id + '</td><td><span>' + data.user + '</span></td><td><span>' + data.address + 
-		     '</span></td><td><span>' + data.phone + '</span></td><td><span>' + confirm + 
-		     '</span></td><td><span>' + goodsStatus + '</span></td></tr>');    
+function renderFinance(data) {
+	return $('<tr><td><span>' + data.order_id + '</span></td><td><span>' + data.employee_name
+	 	+ '</span></td><td><span>' + data.date + '</span></td><td><span>' + data.total_price 
+	 	+ '</span></td><td><span>' + data.profit + '</span></td><tr>');    
 }
 
 

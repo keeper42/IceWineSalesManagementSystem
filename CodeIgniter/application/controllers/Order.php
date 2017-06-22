@@ -91,4 +91,11 @@ class Order extends CI_Controller {
 	public function updateOrder() {
 		echo $this->order->updateOrder();
 	}
+
+	public function uploadOrders() {
+		$json = $this->input->post();
+		echo $json;
+		// echo $this->order->uploadOrders();
+	}
+
 }

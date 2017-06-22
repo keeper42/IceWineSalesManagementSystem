@@ -102,6 +102,16 @@ class Order_model extends CI_Model {
 		// 处理订单
 	}
 
+	public function uploadOrders() {
+		// 录入订单
+		$json = $this->input->post();
+		
+		// $json = stripslashes($json);
+		$data = json_decode($json);
+		// $data = json_decode(trim(file_get_contents('php://input')), true);
+		return $data;
+	}
+
 	public function updateOrder() {
 		// 获取数据 检查数据合法性
 		$id = $this->input->post('oid');

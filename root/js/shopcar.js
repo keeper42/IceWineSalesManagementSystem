@@ -1,1 +1,68 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('8 v(e){6 3=f(q.m(\'a\').d);2(j(3)){$("#a").7(1);r}6 g=e.d;6 4=\'\';2(g==\'-\'){2(3>1){4=3-1}9{4=3}}9 2(g==\'+\'){6 l=f(c);2(3>l-1){4=3}9{4=3+1}}q.m(\'a\').d=4}8 w(e){6 b=$(e).7();2(b>c){$(e).7(c)}2(b<1){$(e).7(1)}}8 x(e){p=$(e).5(\'k\');n=$("#a").7();2(n==0){h("u!");r}$.s({t:"I",J:"o",K:\'/H.L/M/A\',5:\'k=\'+p+"&b="+n+\'&s=B\',y:8(5){i=f(5);2(j(i)){h("z！"+5)}9{$("#C").o(i);h("F!")}},G:8(5){D("E~")}})}',49,49,'||if|txt|res|data|var|val|function|else|addGoods|number|STOCK|value||parseInt|current|alert|sn|isNaN|pid|max|getElementById||html||document|return|ajax|type|商品数量不能为0|adda|checkNumber|addToShopCar|success|添加失败|addToShopping|true|shopNum|addDangerInfo|获取数量失败|添加成功|error|index|POST|dataType|url|php|shopping'.split('|'),0,{}))
+function adda(e)
+{
+	var txt = parseInt(document.getElementById('addGoods').value);
+	if (isNaN(txt)) {
+		$("#addGoods").val(1);
+		return ;
+	}
+	var current = e.value;
+	var res = '';
+	if(current == '-')
+	{
+		if(txt > 1)
+		{
+			res = txt - 1;
+		}else
+		{
+			res = txt;
+		}
+	}
+	else if(current == '+')
+	{
+		var max = parseInt(STOCK);
+		if (txt > max - 1) {
+			res = txt;
+		} else {
+			res = txt + 1;			
+		}
+	}
+	document.getElementById('addGoods').value = res;	
+}
+
+function checkNumber(e) {
+	var number = $(e).val();
+	if (number > STOCK) {
+		$(e).val(STOCK);
+	}
+	if (number < 1) {
+		$(e).val(1);
+	}
+}
+
+function addToShopCar(e) {
+	$pid = $(e).data('pid');
+	$number = $("#addGoods").val();
+	if ($number == 0) {
+		alert("商品数量不能为0!");
+		return ;
+	}
+	$.ajax({
+	  type: "POST",
+	  dataType: "html",
+	  url: '/index.php/shopping/addToShopping',
+	  data: 'pid=' + $pid + "&number=" + $number + '&ajax=true',
+	  success: function (data) {
+	  	sn = parseInt(data);
+	  	if (isNaN(sn)) {
+	  		alert("添加失败！" + data);
+	  	} else {
+	  		$("#shopNum").html(sn);
+	  		alert("添加成功!");
+	  	}
+	  },
+	  error: function(data) {
+			addDangerInfo("获取数量失败~");
+	  }
+	});
+}
+

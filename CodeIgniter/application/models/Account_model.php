@@ -27,28 +27,33 @@ class Account_model extends CI_Model {
 		if ($user && $user->password == substr(hash('sha256', $password), -50) && $user->authority == 0){
 			$_SESSION['user'] = $user;
 			// header("Location:".$redirect_url);
-			header("Location:http://".site_url('home'));
+			header("Location:http://172.29.45.4/index.php/home");
+			// header("Location:http://".site_url('home'));
 		} else if ($user && $user->password == substr(hash('sha256', $password), -50) && $user->authority == 666){
 			$_SESSION['user'] = $user;
-			header("Location:http://".site_url('employee'));
+			header("Location:http://172.29.45.4/index.php/employee");
+			// header("Location:http://".site_url('employee'));
 		} else if ($user && $user->password == substr(hash('sha256', $password), -50) && $user->authority == 777){
 			$_SESSION['user'] = $user;
-			header("Location:http://".site_url('manager'));
+			header("Location:http://172.29.45.4/index.php/manager");
+			// header("Location:http://".site_url('manager'));
 		} else {
 			$_SESSION['error'] = "用户名或密码错误";
-			header("Location:http://".site_url('account'));
+			header("Location:http://172.29.45.4/index.php/account");
+			// header("Location:http://".site_url('account'));
 		}
 
 	}
 
 	// The user logs in, does not log in to jump to the login page, jumps to $redirect_url after login.
 	public function login($redirect_url = False) {
-		if ($redirect_url === False) {
-			$redirect_url = current_url();
-		}
+		// if ($redirect_url === False) {
+		// 	$redirect_url = current_url();
+		// }
 		if (!$this->session->user) {
 			$_SESSION['redirect_url'] = $redirect_url;
-			header("Location:http://".site_url('account'));
+			// header("Location:http://".site_url('account'));
+			header("Location:http://172.29.45.4/index.php/account");
 			exit();
 		}
 	}
@@ -61,5 +66,5 @@ class Account_model extends CI_Model {
 				unset($_SESSION['user']);
 			}
 			header("Location:".$redirect_url);
-	}	
+	}
 }
