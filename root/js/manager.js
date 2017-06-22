@@ -144,19 +144,27 @@ function initEditor(id) {
 function save(e) {
 	$button = $(e);
 	$button.button('loading');
+	var dateString = $('#entry_time').val();
+	if(!isDate(dateString)) {
+		$button.button('reset');
+		addDangerInfo("error:" + data);
+		$dom.delay(1000).hide(1000, function() {
+	  			$(this).remove();
+	  		});
+		return;
+	}
 	$.ajax({
 		type: "POST",
 		dataType: "html",
 		url: "/index.php/employee/addEmployee",
 		data: $('#employee-data').serialize(),
 		success: function(data){
-			// console.log(data);
 			$button.button('reset');
 			if(data < 0){
 				addDangerInfo("error:" + data);
 				return;
 			}
-			$("#pid").val(data);
+			// $("#pid").val(data);
 			
 			$dom = addSuccessInfo("Save employee successfully~~");
 	  		$dom.delay(1000).hide(1000, function() {
@@ -166,9 +174,34 @@ function save(e) {
 		error: function(data) {
 			$button.button('reset');
 			addDangerInfo("error:" + data.responseText);
+			$dom.delay(1000).hide(1000, function() {
+	  			$(this).remove();
+	  		});
 		}
 	});
 }
+	
+/**
+ * 判断是否传入的字符串为日期
+ * @param  {[type]}  dateString [description]
+ * @return {Boolean}            [description]
+ */
+function isDate(dateString){
+	if(dateString.trim() == "") { 
+		return true;
+	} 
+	var reg = dateString.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/); 
+	if(reg == null) {
+	    alert("请输入格式正确的日期 !\n\r日期格式：yyyy-mm-dd, 例  如：2017-01-01\n\r");
+		return false;
+	}
+	var date = new Date(reg[1], reg[3]-1, reg[4]);
+	var num = (date.getFullYear() == reg[1] && (date.getMonth() + 1) == reg[3] && date.getDate() == reg[4]);
+	if(num == 0) {
+	    alert("请输入格式正确的日期 !\n\r日期格式：yyyy-mm-dd, 例  如：2017-01-01\n\r");
+	}
+	return (num != 0);
+} 
 
 ////////////////////////////////////////Show a infomation Begin//////////////////////////////
 /**
@@ -240,8 +273,8 @@ function addDangerInfo(info) {
  */
 function renderEmployee(data) {
 	return $('<tr><td><a href="#" data-pid=' + data.id + ' onclick="editEmployee(this)">' + data.id +
-		     '</a></td><td><span>' + data.name + '</span></td><td><span>' + data.sex + 
-		     '</span></td><td><span>' + data.position + '</span></td><td><span>' + data.wage + 
+		     '</a></td><td><a href="#" data-pid=' + data.id + ' onclick="editEmployee(this)">' +  data.name 
+		     + '</a></td><td><span>' + data.sex + '</span></td><td><span>' + data.position + '</span></td><td><span>' + data.wage + 
 		     '</span></td><td><span>' + data.entry_time + '</span></td><td><span>' + data.contract_time + '</span></td></tr>');    
 }
 /**
@@ -265,10 +298,13 @@ function editEmployee(e){
 	  	data = $.parseJSON(data);
 	  	$("#pid").val(data.id);
 	  	$("#name").val(data.name);
+	  	// $("#name").attr("disabled", true);
 	  	$("#sex").val(data.sex);
+	  	// $("#sex").attr("disabled", true);
 	  	$("#position").val(data.position);
 	  	$("#wage").val(data.wage);
 	  	$("#entry_time").val(data.entry_time);
+	  	// $("#entry_time").attr("disabled", true);
 	  	$("#contract_time").val(data.contract_time);
 	  },
 	  error: function(data) {
@@ -315,6 +351,11 @@ function dismissEmployee() {
 function dismiss(e){
 	$button = $(e);
 	$button.button('loading');
+	var pid = $('#pid').val();
+	var name = $('#name').val();
+	// if(pid == "" || name == "") {
+	// 	alert("编号或姓名不能为空! ");
+	// }
 	$.ajax({
 		type: "POST",
 		dataType: "html",
@@ -325,6 +366,9 @@ function dismiss(e){
 			$button.button('reset');
 			if(data < 0){
 				addDangerInfo("error:" + data);
+				$dom.delay(1000).hide(1000, function() {
+		  			$(this).remove();
+		  		});
 				return;
 			}
 			$("#pid").val(data);
@@ -337,6 +381,9 @@ function dismiss(e){
 		error: function(data) {
 			$button.button('reset');
 			addDangerInfo("error:" + data.responseText);
+			$dom.delay(1000).hide(1000, function() {
+	  			$(this).remove();
+	  		});
 		}
 	});
 }

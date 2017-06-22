@@ -72,7 +72,7 @@
         </div>
 
         <div style="float: right">
-          <button type="button" onclick="method1('finance-list')" class="btn btn-primary" style="margin-right: 60px">&nbsp;流水报表&nbsp;</button>
+          <button type="button" onclick="method1('finance-list')" class="btn btn-primary" style="margin-right: 60px"><i class="fa fa-bar-chart-o"></i>&nbsp;流水报表&nbsp;</button>
         </div>
         <br>
         <!-- Load the contents of the tbody -->
@@ -80,7 +80,6 @@
           <ul class="pagination" id="finances-pagination" data-list-url="/index.php/financeManage/getFinance" data-table="#finance-list" data-pages="0" data-num-url="/index.php/financeManage/getFinanceNum" data-current-page="0" data-single-num="10" data-render="renderFinance(data[i])"></ul>
         </div>
       </div>
-
 
       <!-- finance -->
       <div id="finance" class="clearfix hidden">

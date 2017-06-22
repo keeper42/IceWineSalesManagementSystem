@@ -68,7 +68,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">手机</label>
           <div class="col-sm-10" style="width: 50%;">
-            <input type="text" class="form-control" placeholder="phone" value="13795384512">
+            <input type="text" class="form-control" placeholder="phone" value="13087654321">
           </div>
         </div>
         <div class="form-group">

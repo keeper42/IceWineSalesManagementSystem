@@ -29,7 +29,7 @@ class Finance_model extends CI_Model {
 			$page = $pages - 1;
 		}
 		$this->db->limit(10, ($page) * 10);
-		$query = $this->db->get('order');
+		$query = $this->db->get('finance');
 		return $query->result();	
 	}
 
