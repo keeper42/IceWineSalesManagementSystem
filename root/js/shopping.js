@@ -32,19 +32,21 @@ function deleteShopping(e) {
  * @param  {dom} e 
  */
 function createOrder() {
-	$inputs = $("#cartTable tbody input:checkbox");
-	$checked = [];
-	for (var i = 0; i < $inputs.length; i++) {
-		if ($inputs[i].checked) {
-			$checked.push($inputs[i]);
-		}
-	}
-	if ($checked.length == 0) {
-		return ;
-	}
-	var param = $checked[0].getAttribute('data-sid');
-	for (var i = 1; i < $checked.length; i++) {
-		param += '|' + $checked[i].getAttribute('data-sid');
-	}
-	window.location.href = "/index.php/order/createOrder?sid=" + param;
+  	$inputs = $("#cartTable tbody input:checkbox");
+  	$checked = [];
+  	for (var i = 0; i < $inputs.length; i++) {
+  		if ($inputs[i].checked) {
+  			$checked.push($inputs[i]);
+  		}
+  	}
+  	if ($checked.length == 0) {
+  		return ;
+  	}
+  	var param = $checked[0].getAttribute('data-sid');
+  	for (var i = 1; i < $checked.length; i++) {
+  		param += '|' + $checked[i].getAttribute('data-sid');
+  	}
+  	window.location.href = "/index.php/order/createOrder?sid=" + param;
 }
+
+//

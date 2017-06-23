@@ -39,6 +39,13 @@
 						<span style="font-size: 16px">订单管理</span>
 					</a>
 				</li>
+				<!-- 客户管理 -->
+				<li class="list">
+				  <a href="/index.php/customerManage" data-target="customers">
+				    <i class="fa fa-group" ></i>
+				    <span style="font-size: 16px">客户管理</span>
+				  </a>
+				</li>
 				<li class="list">
 					<a href="/index.php/employeePersonal" data-target="personal">
 						<i class="fa fa-user"></i>

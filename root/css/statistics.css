@@ -1,0 +1,9 @@
+.center {
+	display: -webkit-flex;
+	-webkit-justify-content: center;
+	-webkit-align-items: center;
+}
+
+.mytr > th {
+	text-align: center;
+}
