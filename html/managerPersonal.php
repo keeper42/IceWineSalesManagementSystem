@@ -40,6 +40,13 @@
             <span style="font-size: 16px">财务管理</span>
           </a>
         </li>
+        <!--统计图表-->
+        <li class="list">
+          <a href="/index.php/statistics" data-target="statistics">
+            <i class="fa fa-bar-chart-o" aria-hidden="true"></i>
+            <span style="font-size: 16px">统计图表</span>
+          </a>
+        </li>
         <li class="list menu-focus">
           <a href="/index.php/managerPersonal" data-target="personal">
             <i class="fa fa-user" aria-hidden="true"></i>

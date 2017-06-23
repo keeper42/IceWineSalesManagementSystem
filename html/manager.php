@@ -39,6 +39,13 @@
             <span style="font-size: 16px">财务管理</span>
           </a>
         </li>
+        <!--统计图表-->
+        <li class="list">
+          <a href="/index.php/statistics" data-target="statistics">
+            <i class="fa fa-bar-chart-o" aria-hidden="true"></i>
+            <span style="font-size: 16px">统计图表</span>
+          </a>
+        </li>
         <li class="list">
           <a href="/index.php/managerPersonal" data-target="personal">
             <i class="fa fa-user"></i>
@@ -90,12 +97,13 @@
         <h3 id="func-name"></h3>
         <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工信息</h3>
           <form action="/index.php/employee/addEmployee" method="post" role="form" class="form-horizontal" id="employee-data">
-            <div class="form-group">
+          <input type="number" name="pid" id="pid" value="" class="hidden">
+<!--             <div class="form-group">
               <label for="pid" class="col-sm-1 control-label">编号:</label>
               <div class="col-sm-11">
                 <input type="text" name="pid" id="pid" class="form-control" required="required">
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label for="name" class="col-sm-1 control-label">姓名:</label>
               <div class="col-sm-11">
@@ -133,7 +141,7 @@
               </div>
             </div>
             <div class="form-group" style="float: right; margin-right: 10px;">
-              <button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">&nbsp;保存&nbsp;</button>
+              <button type="button" data-loading-text="Saving..." onclick="save(this)" class="btn btn-primary pull-right save">&nbsp;保存&nbsp;</button>
             </div>
           </form>
       </div>
@@ -156,7 +164,7 @@
                 </div>
               </div>
               <div class="form-group" style="float: right; margin-right: 10px;">
-                <button type="button" data-loading-text="Svaing..." onclick="dismiss(this)" class="btn btn-primary pull-right save">&nbsp;解雇&nbsp;</button>
+                <button type="button" data-loading-text="Deleting..." onclick="dismiss(this)" class="btn btn-primary pull-right save">&nbsp;解雇&nbsp;</button>
               </div>
             </form>
       </div>
