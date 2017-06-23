@@ -15,10 +15,18 @@ class Order_model extends CI_Model {
 			return "";
 		}
 		$sids = explode('|', $sids);
+
+		$username = $this->db->select('*')->where('id', $userid)->get('user')->row()->name;
+		$address = $this->db->select('*')->where('name', $username)->get('customer')->row()->address;
+		$phone = $this->db->select('*')->where('name', $username)->get('customer')->row()->phone;
+
 		// 创建order记录
-		$data = array('user' => $userid);
+		// $data = array('user'=>$userid);
+
+		$data = array('user' => $userid, 'address' => $address, 'phone' => $phone);
 		$this->db->insert('order', $data);
 		$orderid = $this->db->insert_id();
+
 		foreach ($sids as $sid) {
 			$shopping = $this->db->select('*')->where('id', $sid)->get('shopping')->row();
 			// 创建orderlist
