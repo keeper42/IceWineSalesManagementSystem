@@ -153,6 +153,7 @@ function save(e) {
 	  		});
 		return;
 	}
+	console.log($('#employee-data').serialize());
 	$.ajax({
 		type: "POST",
 		dataType: "html",

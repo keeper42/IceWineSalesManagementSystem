@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">  
                             <i class="fa fa-lock fa-lg"></i> 
-                            <input class="form-control required" type="repassword" placeholder="    re-enter" name="re-enter password" maxlength="8" required="required"/>  
+                            <input class="form-control required" type="repassword" placeholder="    confirm " name="confirm password" maxlength="8" required="required"/>  
                     </div>
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group"> 

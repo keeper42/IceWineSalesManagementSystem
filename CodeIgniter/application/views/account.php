@@ -43,12 +43,12 @@
                         </div>
                     </div>  
                     <div class="login_form">             
-                        <a href="javascript:volid(0);" tabindex="6" class="forget-pwd" target="_blank">
-                            <font color="blue" size="3px">忘记密码</font>
+                        <a href="javascript:volid(0);" tabindex="6" class="forget-pwd" target="_blank" style="margin-left: 15px;">
+                            <span style="color: white;">忘记密码</span>
                         </a>
                         <label>&nbsp;&nbsp;|&nbsp;&nbsp;</label>
                         <a href="/index.php/register" class="register" target="_blank" tabindex="7" >
-                            <font color="blue" size="3px">免费注册</font>
+                            <span style="color: white;">免费注册</span>
                         </a> 
                     </div> 
                 </div>  

@@ -1,19 +1,45 @@
- body{background: url(../images/login.jpg) no-repeat;
- background-size: <span style="font-family: 微软雅黑; background-color: rgb(239, 239, 239);">cover</span>;font-size: 16px;}  
- .form{background: rgba(29,44,139,0.3);width:400px;margin:100px auto;}  
- #login_form{display: block;}  
- .fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}  
- input[type="text"],input[type="password"]{padding-left:26px;}  
- .checkbox{padding-left:21px;} 
- h3{
+ body {
+ 	background: url(../images/login.jpg) no-repeat;
+ 	background-size: cover;
+ 	font-size: 16px;
+ }  
+
+ .form {
+ 	background: rgba(29,44,139,0.3);
+ 	width:400px;
+ 	margin:100px auto;
+ }  
+
+ #login_form {
+ 	display: block;
+ }  
+
+ .fa {
+ 	display: inline-block;
+ 	top: 27px;
+ 	left: 6px;
+ 	position: relative;
+ 	color: #ccc;
+ }  
+
+ input[type="text"],input[type="password"] {
+ 	padding-left:26px;
+ }  
+
+ .checkbox {
+ 	padding-left:21px;
+ } 
+
+ h3 {
  	color: #fff;
  	margin-left:35px;
  }
-.checkbox{
+
+.checkbox {
 	color:#fff;
 	font-size: 14px;
 }
-.btn{
+.btn {
 	padding: 5px 10px;
 	margin-top: 10px;
 	margin-bottom: 20px;

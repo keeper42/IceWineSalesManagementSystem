@@ -17,6 +17,11 @@
   <link href="/fonts/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- 编辑器 -->
   <link rel="stylesheet" href="/css/wangEditor.min.css">
+  <style>
+      .redClass {
+          border-color: red;
+      }
+  </style>
 </head>
 <body>
 	<div id="wrapper">
@@ -90,41 +95,42 @@
 			<!-- wangEditor -->
 			<div id="product" class="clearfix hidden">
 				<h3 id="func-name"></h3>
-				<h3 style="font-weight: bold; margin-left: 5px; margin-bottom: 20px;">添加产品</h3><br/>
+				<h3 style="font-weight: bold; margin-left: 95px; margin-bottom: 20px;">添加产品</h3><br/>
 				<form action="/index.php/product/addProduct" method="post" role="form" class="form-horizontal" id="product-data">
 					<input type="number" name="pid" id="pid" value="" class="hidden">
 					<div class="form-group">
-						<label for="name" class="col-sm-1 control-label">产品名称: </label>
-						<div class="col-sm-11">
+						<label for="name" class="col-sm-2 control-label">产品名称: </label>
+						<div class="col-sm-7">
 							<input type="text" name="name" id="name" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="img" class="col-sm-1 control-label">产品图样: </label>
-						<div class="col-sm-11">
-							<input type="text" name="img" id="img" class="form-control" required="required">
-						</div>
+						<label for="img" class="col-sm-2 control-label">产品图样: </label>
+						<div class="col-sm-7">
+							<input type="text" name="img" id="img" class="form-control" required="required" onchange="xmTanUploadImg(this)">
+                        </div>
+                        <img src="#" id="imgShow" style="display: none;position: absolute; top: 180px; right: 50px; width: 200px;height: 200px;">
 					</div>
 					<div class="form-group">
-						<label for="price" class="col-sm-1 control-label">产品售价: </label>
-						<div class="col-sm-11">
+						<label for="price" class="col-sm-2 control-label">产品售价: </label>
+						<div class="col-sm-7">
 							<input type="number" name="price" id="price" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="stock" class="col-sm-1 control-label">产品库存: </label>
-						<div class="col-sm-11">
+						<label for="stock" class="col-sm-2 control-label">产品库存: </label>
+						<div class="col-sm-7">
 							<input type="number" name="stock" id="stock" class="form-control" required="required">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="content" class="col-sm-1 control-label">产品详情: </label>
-						<div class="col-sm-11 pull-right">
+						<label for="content" class="col-sm-2 control-label">产品详情: </label>
+						<div class="col-sm-7" >
 							<textarea name="content" id="content" class="form-control" cols="30" rows="10" required="required"></textarea>
 						</div>
 					</div>
 					<div class="form-group" style="margin-right: 10px">
-						<button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary pull-right save">&nbsp;保存&nbsp;</button>
+						<button type="button" data-loading-text="Svaing..." onclick="save(this)" class="btn btn-primary save" style="margin-left: 750px;">&nbsp;保存&nbsp;</button>
 					</div>
 				</form>
 			</div>
@@ -132,17 +138,17 @@
 			<!-- delete product -->
 			<div id="delete_product" class="clearfix hidden">
 			    <h3 id="func-name"></h3>
-			    <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">删除产品</h3>
+			    <h3 style="font-weight: bold; margin-left: 100px;margin-bottom: 20px;">删除产品</h3>
 			      <form action="/index.php/product/deleteProduct" method="post" role="form" class="form-horizontal" id="delete-product-data">
 			        <div class="form-group">
-			          <label for="gid" class="col-sm-1 control-label">产品编号:</label>
-			          <div class="col-sm-11">
+			          <label for="gid" class="col-sm-2 control-label">产品编号:</label>
+			          <div class="col-sm-7">
 			            <input type="text" name="gid" id="gid" class="form-control" required="required">
 			          </div>
 			        </div>
 			        <br>
-			        <div class="form-group" style="float: right; margin-right: 10px;">
-			          <button type="button" data-loading-text="Delete..." onclick="confirmDelete(this)" class="btn btn-primary pull-right save">确定删除</button>
+			        <div class="form-group" style="margin-left: 740px;">
+			          <button type="button" data-loading-text="Delete..." onclick="confirmDelete(this)" class="btn btn-primary save">确定删除</button>
 			        </div>
 			      </form>
 			</div>
@@ -157,4 +163,55 @@
 <script src="/js/wangEditor.min.js"></script>
 
 <script src="/js/admin.js"></script>
+<script>
+    $(function() {
+        $("#name").blur(function () {
+            $(this).removeClass("redClass");
+            if(this.value == "") {
+                $(this).addClass("redClass");
+                $(this).attr("placeholder", "请输入产品名称");
+            }
+        });
+        $("#img").blur(function () {
+            $(this).removeClass("redClass");
+            if(this.value == "") {
+                $(this).addClass("redClass");
+                $(this).attr("placeholder", "请输入图样存放的路径");
+            }
+        });
+        $("#price").blur(function () {
+            $(this).removeClass("redClass");
+            if(this.value == "") {
+                $(this).addClass("redClass");
+                $(this).attr("placeholder", "请输入产品价格");
+            }
+        })
+        $("#stock").blur(function () {
+            $(this).removeClass("redClass");
+            if(this.value == "") {
+                $(this).addClass("redClass");
+                $(this).attr("placeholder", "请输入产品库存");
+            }
+        });
+        $("#gid").blur(function () {
+            $(this).removeClass("redClass");
+            if(this.value == "") {
+                $(this).addClass("redClass");
+                $(this).attr("placeholder", "请输入产品编号");
+            }
+        });
+    });
+    function xmTanUploadImg(obj) {
+        var file = obj.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = document.getElementById("imgShow");
+            img.src = this.result;
+            img.style.display = "";
+        }
+        reader.readAsDataURL(file);
+    }
+
+</script>
+
 </html>

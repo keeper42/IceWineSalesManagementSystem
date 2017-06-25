@@ -17,6 +17,11 @@
   <link href="/fonts/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- 编辑器 -->
   <link rel="stylesheet" href="/css/wangEditor.min.css">
+  <style>
+      .redClass {
+          border-color: red;
+      }
+  </style>
 </head>
 <body>
   <div id="wrapper">
@@ -93,9 +98,9 @@
       </div>
 
       <!-- employee -->
-      <div id="employee" class="clearfix hidden">
+      <div id="employee" class="clearfix hidden" style="padding-left: 100px;">
         <h3 id="func-name"></h3>
-        <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工信息</h3>
+        <h3 style="font-weight: bold; margin-left: 100px;margin-bottom: 20px;">员工信息</h3>
           <form action="/index.php/employee/addEmployee" method="post" role="form" class="form-horizontal" id="employee-data">
           <input type="number" name="pid" id="pid" value="" class="hidden">
 <!--             <div class="form-group">
@@ -105,43 +110,48 @@
               </div>
             </div> -->
             <div class="form-group">
-              <label for="name" class="col-sm-1 control-label">姓名:</label>
-              <div class="col-sm-11">
+              <label for="name" class="col-sm-2 control-label">姓名:</label>
+              <div class="col-sm-7">
                 <input type="text" name="name" id="name" class="form-control" required="required">
               </div>
             </div>
             <div class="form-group">
-              <label for="sex" class="col-sm-1 control-label">性别:</label>
-              <div class="col-sm-11">
-                <input type="text" name="sex" id="sex" class="form-control" required="required">
+              <label for="sex" class="col-sm-2 control-label">性别:</label>
+              <div class="col-sm-7">
+                <input type="radio" name="sex" checked="checked" required="required" value="男">男
+                <input type="radio" name="sex" style="margin-left: 100px;" required="required" value="女">女
+<!--                <input type="text" name="sex" id="sex" class="form-control" required="required">-->
               </div>
             </div>
             <div class="form-group">
-              <label for="position" class="col-sm-1 control-label">职位:</label>
-              <div class="col-sm-11">
-                <input type="text" name="position" id="position" class="form-control" required="required">
+              <label for="position" class="col-sm-2 control-label">职位:</label>
+              <div class="col-sm-7">
+                <input type="radio" name="position" checked="checked" value="普通职工">普通职工
+                <input type="radio" name="position" style="margin-left: 58px;" required="required" value="高级职工">高级职工
+                <input type="radio" name="position" style="margin-left: 58px;" required="required" value="项目经理">项目经理
+<!--                <input type="text" name="position" id="position" class="form-control" required="required">-->
               </div>
             </div>
             <div class="form-group">
-              <label for="wage" class="col-sm-1 control-label">薪水:</label>
-              <div class="col-sm-11">
+              <label for="wage" class="col-sm-2 control-label">薪水:</label>
+              <div class="col-sm-7">
                 <input type="text" name="wage" id="wage" class="form-control" required="required">
               </div>
             </div>
             <div class="form-group">
-              <label for="entry_time" class="col-sm-1 control-label">入职时间:</label>
-              <div class="col-sm-11">
-                <input type="text" name="entry_time" id="entry_time" class="form-control" required="required">
+              <label for="entry_time" class="col-sm-2 control-label">入职时间:</label>
+              <div class="col-sm-7">
+                <input type="date" name="entry_time" id="entry_time" class="form-control" required="required">
               </div>
             </div>
             <div class="form-group">
-              <label for="contract_time" class="col-sm-1 control-label">合同时间:</label>
-              <div class="col-sm-11">
+              <label for="contract_time" class="col-sm-2 control-label">合同时间:</label>
+              <div class="col-sm-7">
                 <input type="text" name="contract_time" id="contract_time" class="form-control" required="required">
               </div>
             </div>
             <div class="form-group" style="float: right; margin-right: 10px;">
-              <button type="button" data-loading-text="Saving..." onclick="save(this)" class="btn btn-primary pull-right save">&nbsp;保存&nbsp;</button>
+              <button type="button" data-loading-text="Saving..." onclick="save(this)" class="btn btn-primary pull-right save" style="margin-right: 250px;">&nbsp;保存&nbsp;</button>
             </div>
           </form>
       </div>
@@ -149,22 +159,22 @@
       <!-- dismiss_employee -->
       <div id="dismiss_employee" class="clearfix hidden">
           <h3 id="func-name"></h3>
-          <h3 style="font-weight: bold; margin-left: 10px;margin-bottom: 20px;">员工信息</h3>
+          <h3 style="font-weight: bold; margin-left: 120px;margin-bottom: 20px;">员工信息</h3>
             <form action="/index.php/employee/dismissEmployee" method="post" role="form" class="form-horizontal" id="dismiss-employee-data">
               <div class="form-group">
-                <label for="pid" class="col-sm-1 control-label">编号:</label>
-                <div class="col-sm-11">
+                <label for="pid" class="col-sm-2 control-label">编号:</label>
+                <div class="col-sm-7">
                   <input type="text" name="pid" id="pid" class="form-control" required="required">
                 </div>
               </div>
               <div class="form-group">
-                <label for="name" class="col-sm-1 control-label">姓名:</label>
-                <div class="col-sm-11">
+                <label for="name" class="col-sm-2 control-label">姓名:</label>
+                <div class="col-sm-7">
                   <input type="text" name="name" id="name" class="form-control" required="required">
                 </div>
               </div>
               <div class="form-group" style="float: right; margin-right: 10px;">
-                <button type="button" data-loading-text="Deleting..." onclick="dismiss(this)" class="btn btn-primary pull-right save">&nbsp;解雇&nbsp;</button>
+                <button type="button" data-loading-text="Deleting..." onclick="dismiss(this)" class="btn btn-primary pull-right save" style="margin-right: 280px;">&nbsp;解雇&nbsp;</button>
               </div>
             </form>
       </div>
@@ -180,4 +190,59 @@
 <script src="/js/wangEditor.min.js"></script>
 
 <script src="/js/manager.js"></script>
+<script>
+    $(function() {
+       $("#employee-data div div :input").blur(function() {
+          $(this).removeClass("redClass");
+          if($(this).attr("name") == "name") {
+              if(this.value == "") {
+                  $(this).addClass("redClass");
+                  $(this).attr("placeholder", "请输入姓名");
+                  return false;
+              }
+          } else if($(this).attr("name") == "wage") {
+              if(this.value == "") {
+                  $(this).addClass("redClass");
+                  $(this).attr("placeholder", "请输入工资");
+                  return false;
+              }
+          } else if($(this).attr("name") == "entry_time") {
+              if(this.value == "") {
+                  $(this).addClass("redClass");
+                  $(this).attr("placeholder", "请输入入职时间");
+                  return false;
+              }
+          } else if($(this).attr("name") == "contract_time") {
+              if(this.value == "") {
+                  $(this).addClass("redClass");
+                  $(this).attr("placeholder", "请输入合同时间");
+                  return false;
+              }
+          }
+          return true;
+       });
+
+       $("#dismiss-employee-data div div :input").blur(function() {
+           $(this).removeClass("redClass");
+           if($(this).attr("name") == "name") {
+               if(this.value == "") {
+                   $(this).addClass("redClass");
+                   $(this).attr("placeholder", "请输入姓名");
+                   return false;
+               }
+           } else if($(this).attr("name") == "pid") {
+               if(this.value == "") {
+                   $(this).addClass("redClass");
+                   $(this).attr("placeholder", "请输入编号");
+                   return false;
+               } else if(isNaN(this.value) == true) {
+                   $(this).addClass("redClass");
+                   $(this).attr("placeholder", "编号应只含有数字");
+                   return false;
+               }
+           }
+           return true;
+       });
+    });
+</script>
 </html>
