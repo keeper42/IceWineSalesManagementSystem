@@ -27,23 +27,23 @@ class Account_model extends CI_Model {
 		if ($user && $user->password == substr(hash('sha256', $password), -50) && $user->authority == 0){
 			$_SESSION['user'] = $user;
 			// header("Location:".$redirect_url);
-			header("Location:http://172.27.201.13/index.php/home");
-			// header("Location:http://127.0.0.1/index.php/home");
+			header("Location:http://172.29.45.4/index.php/home");
+			// header("Location:http://172.27.108.34/index.php/home");
 			// header("Location:http://".site_url('home'));
 		} else if ($user && $user->password == substr(hash('sha256', $password), -50) && $user->authority == 666){
 			$_SESSION['user'] = $user;
-			header("Location:http://172.27.201.13/index.php/employee");
-			// header("Location:http://127.0.0.1/index.php/employee");
+			header("Location:http://172.29.45.4/index.php/employee");
+			// header("Location:http://172.27.108.34/index.php/employee");
 			// header("Location:http://".site_url('employee'));
 		} else if ($user && $user->password == substr(hash('sha256', $password), -50) && $user->authority == 777){
 			$_SESSION['user'] = $user;
-			header("Location:http://172.27.201.13/index.php/manager");
-			// header("Location:http://127.0.0.1/index.php/manager");
+			header("Location:http://172.29.45.4/index.php/manager");
+			// header("Location:http://172.27.108.34/index.php/manager");
 			// header("Location:http://".site_url('manager'));
 		} else {
 			$_SESSION['error'] = "用户名或密码错误";
-			header("Location:http://172.27.201.13/index.php/account");
-			// header("Location:http://127.0.0.1/index.php/account");
+			header("Location:http://172.29.45.4/index.php/account");
+			// header("Location:http://172.27.108.34/index.php/account");
 			// header("Location:http://".site_url('account'));
 		}
 
@@ -57,7 +57,8 @@ class Account_model extends CI_Model {
 		if (!$this->session->user) {
 			$_SESSION['redirect_url'] = $redirect_url;
 			// header("Location:http://".site_url('account'));
-			header("Location:http://172.27.201.13/index.php/account");
+			header("Location:http://172.29.45.4/index.php/account");
+			// header("Location:http://172.27.108.34/index.php/account");	
 			exit();
 		}
 	}

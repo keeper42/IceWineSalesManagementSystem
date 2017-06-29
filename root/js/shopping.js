@@ -46,6 +46,7 @@ function createOrder() {
   	for (var i = 1; i < $checked.length; i++) {
   		param += '|' + $checked[i].getAttribute('data-sid');
   	}
+    // console.log(param);
   	window.location.href = "/index.php/order/createOrder?sid=" + param;
 }
 

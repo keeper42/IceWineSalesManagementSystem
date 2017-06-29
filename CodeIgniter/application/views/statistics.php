@@ -17,7 +17,7 @@
   <link href="/fonts/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- 编辑器 -->
   <link rel="stylesheet" href="/css/wangEditor.min.css">
-  <link rel="stylesheet" href="/css/statistics.css"> 
+  <link rel="stylesheet" href="/css/statistics.css">
 </head>
 <body>
   <div id="wrapper">
@@ -229,18 +229,23 @@
 <script src="/js/manager.js"></script>
 <!--绘图-->
 <script src="https://cdn.bootcss.com/Chart.js/2.6.0/Chart.js"></script>
+
+<!-- 统计 -->
+<script src="/js/Chart.bundle.js"></script>
+<script src="/js/utils.js"></script>
 <script>
+    var color = Chart.helpers.color;
 	var customerData = {
 		labels : ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
 		datasets : [
 			{
 				label : "注册人数",
-				backgroundColor : "red",
+				backgroundColor : color(window.chartColors.red).alpha(0.5).rgbString(),
 				data : [65, 4657, 789, 456, 789, 8, 75, 764, 123, 89, 545, 469]
 			},
 			{
 				label : "登录人次",
-				backgroundColor : "green",
+				backgroundColor : color(window.chartColors.blue).alpha(0.5).rgbString(),
 				data : [652, 4673, 781, 4562, 7893, 81, 275, 764, 1223, 891, 5425, 4269]
 			}
 		]
@@ -248,18 +253,34 @@
 	
 	var listData1 = {
 		datasets : [{
-			backgroundColor : ["red", "green", "yellow"],
-			data : [10, 20, 30]
+			backgroundColor : [
+			    window.chartColors.red,
+                window.chartColors.green,
+                window.chartColors.yellow,
+                window.chartColors.orange,
+                window.chartColors.blue,
+                window.chartColors.purple,
+                window.chartColors.grey
+            ],
+			data : [10, 20, 30, 40, 50, 60, 70]
 		}],
-		labels : ['冰酒1', '冰酒2', '冰酒3']
+		labels : ['冰酒1', '冰酒2', '冰酒3', '冰酒4', '冰酒5', '冰酒6', '冰酒7']
 	}
 	
 	var listData2 = {
 		datasets : [{
-			backgroundColor : ["red", "green", "yellow"],
-			data : [24, 89, 15]
+            backgroundColor : [
+                window.chartColors.red,
+                window.chartColors.green,
+                window.chartColors.yellow,
+                window.chartColors.orange,
+                window.chartColors.blue,
+                window.chartColors.purple,
+                window.chartColors.grey
+            ],
+			data : [70, 60, 50, 40, 30, 20, 10]
 		}],
-		labels : ['冰酒1', '冰酒2', '冰酒3']
+        labels : ['冰酒1', '冰酒2', '冰酒3', '冰酒4', '冰酒5', '冰酒6', '冰酒7']
 	}
 	
 	$(function() {

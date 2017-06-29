@@ -107,9 +107,10 @@
 					<div class="form-group">
 						<label for="img" class="col-sm-2 control-label">产品图样: </label>
 						<div class="col-sm-7">
-							<input type="text" name="img" id="img" class="form-control" required="required" onchange="xmTanUploadImg(this)">
+                            <input type="text" name="img" id="img" hidden="hidden">
+                            <input type="file" id="imgPreview" class="form-control" required="required" onchange="xmTanUploadImg(this)">
                         </div>
-                        <img src="#" id="imgShow" style="display: none;position: absolute; top: 180px; right: 50px; width: 200px;height: 200px;">
+                  <!--       <img src="#" id="imgShow" style="display: none;position: absolute; top: 180px; right: 50px; width: 200px;height: 200px;"> -->
 					</div>
 					<div class="form-group">
 						<label for="price" class="col-sm-2 control-label">产品售价: </label>
@@ -172,11 +173,10 @@
                 $(this).attr("placeholder", "请输入产品名称");
             }
         });
-        $("#img").blur(function () {
+        $("#imgPreview").blur(function () {
             $(this).removeClass("redClass");
             if(this.value == "") {
                 $(this).addClass("redClass");
-                $(this).attr("placeholder", "请输入图样存放的路径");
             }
         });
         $("#price").blur(function () {
@@ -201,13 +201,17 @@
             }
         });
     });
+
     function xmTanUploadImg(obj) {
         var file = obj.files[0];
         var reader = new FileReader();
         reader.onload = function(e) {
-            var img = document.getElementById("imgShow");
-            img.src = this.result;
-            img.style.display = "";
+            // var img = document.getElementById("imgShow");
+            // img.src = this.result;
+            // img.style.display = "";
+            var val = $("#imgPreview").val();
+            var arr = val.split("\\");
+            $("#img").val("/images/" + arr[arr.length - 1]);
         }
         reader.readAsDataURL(file);
     }

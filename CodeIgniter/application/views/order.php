@@ -128,56 +128,57 @@
 				<div class="bundle  bundle-last">
 					<div class="bundle-main">
 						<?php foreach ($order as $single) { ?>
-						<ul class="item-content clearfix">
-							<div class="pay-phone">
-								<li class="td td-item">
-									<div class="item-pic">
-										<a href="#" class="J_MakePoint">
-											<img src="<?php echo $single['product']->img ?>" class="itempic J_ItemImg">
-										</a>
-									</div>
-									<div class="item-info">
-										<div class="item-basic-info">
-											<a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">
-											<?php echo $single['product']->name ?></a>
+							<ul class="item-content clearfix">
+								<div class="pay-phone">
+									<li class="td td-item">
+										<div class="item-pic">
+											<a href="#" class="J_MakePoint">
+												<img src="<?php echo $single['product']->img ?>" class="itempic J_ItemImg">
+											</a>
+										</div>
+										<div class="item-info">
+											<div class="item-basic-info">
+												<a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">
+												<?php echo $single['product']->name ?></a>
+											</div>
+										</div>
+									</li>
+									<li class="td td-price">
+										<div class="item-price price-promo-promo">
+											<div class="price-content">
+												<em class="J_Price price-now" id="singlePrice"><?php echo $single['product']->price ?></em>
+											</div>
+										</div>
+									</li>
+								</div>
+								<li class="td td-amount">
+									<div class="amount-wrapper ">
+										<div class="item-amount ">
+											<span class="phone-title">购买数量</span>
+											<div class="sl" >
+												<input class="min am-btn" name="" type="button" value="-" onclick="add(this)"/>
+												<input readonly="true" class="text_box" id="addGoods<?php echo $single['product']->id ?>" data-pid=<?php echo $single['product']->id ?> data-oid=<?php echo $single['order']->id ?> name="" type="text" value=<?php echo $single['order']->amount ?> style="width:30px;" />
+												<input class="add am-btn" name="" type="button" value="+" onclick="add(this)"/>
+											</div>
 										</div>
 									</div>
 								</li>
-								<li class="td td-price">
-									<div class="item-price price-promo-promo">
-										<div class="price-content">
-											<em class="J_Price price-now" id="singlePrice"><?php echo $single['product']->price ?></em>
+								<li class="td td-sum">
+									<div class="td-inner" >
+										<em class="J_ItemSum number" id="price1" tabindex="0"><?php echo $single['product']->price * $single['order']->amount ?></em>
+									</div>
+								</li>
+								<li class="td td-oplist">
+									<div class="td-inner">
+										<span class="phone-title">配送方式</span>
+										<div class="pay-logis">
+											快递<b class="sys_item_freprice" id="express">10</b>元
 										</div>
 									</div>
 								</li>
-							</div>
-							<li class="td td-amount">
-								<div class="amount-wrapper ">
-									<div class="item-amount ">
-										<span class="phone-title">购买数量</span>
-										<div class="sl" >
-											<input class="min am-btn" name="" type="button" value="-" onclick="add(this)"/>
-											<input readonly="true" class="text_box" id="addGoods<?php echo $single['product']->id ?>" data-pid=<?php echo $single['product']->id ?> data-oid=<?php echo $single['order']->id ?> name="" type="text" value=<?php echo $single['order']->amount ?> style="width:30px;" />
-											<input class="add am-btn" name="" type="button" value="+" onclick="add(this)"/>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="td td-sum">
-								<div class="td-inner" >
-									<em class="J_ItemSum number" id="price1" tabindex="0"><?php echo $single['product']->price * $single['order']->amount ?></em>
-								</div>
-							</li>
-							<li class="td td-oplist">
-								<div class="td-inner">
-									<span class="phone-title">配送方式</span>
-									<div class="pay-logis">
-										快递<b class="sys_item_freprice" id="express">10</b>元
-									</div>
-								</div>
-							</li>
-						</ul>
+							</ul>
 						<?php } ?>
+
 						<div class="clear"></div>
 			<!--含运费小计 -->
 			<div class="buy-point-discharge ">
@@ -190,15 +191,15 @@
 			<div class="order-go clearfix">
 				<div class="pay-confirm clearfix">
 					<div class="box">
-						<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
+						<div tabindex="0" id="holyshit267" class="realPay">
 							<span class="price g_price">
+								<span style="font-size: 15px;">实付款：</span>
 	                			<span>¥</span> 
 	                         	<em class="style-large-bold-red" id="price3"><?php echo $single['product']->price * $single['order']->amount +10 ?></em>
 							</span>
 						</div>
 
 						<div id="holyshit268" class="pay-address">
-
 							<p class="buy-footer-address">
 								<span class="buy-line-title buy-line-title-type">寄送至：</span>
 								<span class="buy--address-detail">
@@ -212,8 +213,10 @@
 							<p class="buy-footer-address">
 								<span class="buy-line-title">收货人：</span>
 								<span class="buy-address-detail">   
-	                     <span class="buy-user"><?php echo $user->name ?></span>
-								<span class="buy-phone">12345678910</span>
+	                    		<span class="buy-user"><?php echo $user->name?> </span>
+	                    		<br/>
+	                    		<span class="buy-line-title">联系电话：</span>
+								<span class="buy-phone">13087654321</span>
 								</span>
 							</p>
 						</div>

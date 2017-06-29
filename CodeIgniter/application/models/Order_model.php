@@ -9,8 +9,10 @@ class Order_model extends CI_Model {
 	}
 
 	public function createOrder() {
+
 		$userid = $_SESSION['user']->id;
 		$sids = $this->input->get('sid');
+
 		if (is_null($sids)) {
 			return "";
 		}

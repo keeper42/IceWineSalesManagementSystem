@@ -46,7 +46,7 @@ function add(e){
 		    if (isNaN(sn)) {
 		        alert("修改数量失败！" + data);
 		    } else {
-		    		res = txt + 1;
+		    	res = txt + 1;
 		        document.getElementById('addGoods' + pid).value = res;
 		        var single = parseInt($("#singlePrice").html());
 		        var price1 = document.getElementById("price1");

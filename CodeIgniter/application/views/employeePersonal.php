@@ -54,11 +54,11 @@
         </li>
       </ul>
     </nav>
-    
+
     <!-- container -->
     <div class="container">
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h2 class="page-header">个人信息</h2> 
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="width:55%">
+        <h2 class="page-header">个人信息</h2>
         <form class="form-horizontal" method="post" action="" >
           <div class="form-group">
             <label class="col-sm-2 control-label">头像</label>
@@ -73,31 +73,31 @@
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">昵称</label>
-            <div class="col-sm-10" style="width: 50%;">
+            <div class="col-sm-10">
               <input type="text" class="form-control" placeholder="name" value="<?php echo $user->name ?>">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">职位</label>
-            <div class="col-sm-10" style="width: 50%;">
+            <div class="col-sm-10">
               <input type="text" class="form-control" placeholder="address" value="普通员工">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">邮箱</label>
-            <div class="col-sm-10" style="width: 50%;">
+            <div class="col-sm-10">
               <input type="text" class="form-control" placeholder="email" value="<?php echo $user->name ?>@email.com">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">手机</label>
-            <div class="col-sm-10" style="width: 50%;">
+            <div class="col-sm-10">
               <input type="text" class="form-control" placeholder="phone" value="13723493843">
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-7 col-sm-1">
-              <button type="submit" class="btn btn-default" onclick="alert('保存成功')">保存</button>
+            <div class="col-sm-offset-10 col-sm-1">
+              <button type="submit" class="btn btn-primary" onclick="alert('保存成功')" style="margin-left: 20px">保存</button>
             </div>
           </div>
         </form>
